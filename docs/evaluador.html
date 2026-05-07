@@ -3,287 +3,693 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Evaluador de propiedades — Casa CDMX</title>
+<title>Evaluador de Propiedades — Casa CDMX</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0f0f0f;
-    --surface: #1a1a1a;
-    --surface2: #222;
-    --border: rgba(255,255,255,0.1);
-    --text: #f0f0f0;
-    --muted: #888;
-    --accent: #7f77dd;
-    --accent-light: rgba(127,119,221,0.15);
-    --green: #1d9e75;
-    --amber: #ef9f27;
-    --red: #e24b4a;
-    --teal: #5dcaa5;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; line-height: 1.6; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .header { border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; }
-  .header h1 { font-size: 16px; font-weight: 500; }
-  .header .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .filter-pill { font-size: 11px; background: rgba(127,119,221,0.2); color: #afa9ec; padding: 4px 12px; border-radius: 20px; }
-  .main { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
-  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
-  .tab { padding: 10px 20px; font-size: 13px; cursor: pointer; background: none; border: none; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s; }
-  .tab.active { color: var(--text); border-bottom-color: var(--accent); }
-  .panel { display: none; }
-  .panel.active { display: block; }
-  .section-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 1rem; }
-  .crit-row { display: grid; grid-template-columns: 1.5rem 1fr 60px; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .crit-row:last-child { border-bottom: none; }
-  .crit-name { font-size: 14px; font-weight: 500; }
-  .crit-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .peso { font-size: 13px; font-weight: 500; color: var(--accent); text-align: right; }
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; }
-  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
-  input[type=text], input[type=number], textarea, select {
-    width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
-    color: var(--text); font-size: 14px; padding: 9px 12px; outline: none; font-family: inherit;
-  }
-  input:focus, textarea:focus { border-color: var(--accent); }
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .star-group label { margin-bottom: 8px; }
-  .stars { display: flex; gap: 6px; }
-  .star { font-size: 22px; cursor: pointer; color: var(--border); transition: color .1s; user-select: none; }
-  .star.on { color: var(--amber); }
-  .star-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: inherit; border: none; }
-  .btn-primary { background: var(--accent); color: #fff; }
-  .btn-primary:hover { opacity: .9; }
-  .btn-ghost { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
-  .btn-ghost:hover { color: var(--text); }
-  .btn-group { display: flex; gap: 8px; margin-top: 1.25rem; flex-wrap: wrap; }
-  .prop-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: .75rem; }
-  .prop-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .75rem; }
-  .prop-nombre { font-size: 16px; font-weight: 500; }
-  .prop-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
-  .rating-big { font-size: 32px; font-weight: 600; line-height: 1; }
-  .rating-sub { font-size: 11px; color: var(--muted); margin-top: 2px; text-align: right; }
-  .verdict-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-top: 5px; display: inline-block; }
-  .bar-wrap { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin: .75rem 0; }
-  .bar-fill { height: 100%; border-radius: 3px; transition: width .4s; }
-  .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin-top: .5rem; }
-  .mini-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px solid var(--border); }
-  .mini-row:last-child { border-bottom: none; }
-  .mini-label { color: var(--muted); }
-  .btn-delete { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; margin-top: .75rem; }
-  .btn-delete:hover { border-color: var(--red); color: var(--red); }
-  .empty { font-size: 13px; color: var(--muted); padding: 2rem 0; }
-  .trophy { color: var(--amber); margin-right: 5px; }
-  @media (max-width: 600px) {
-    .grid2 { grid-template-columns: 1fr; }
-    .mini-grid { grid-template-columns: 1fr; }
-    .header { padding: 1rem; flex-direction: column; align-items: flex-start; gap: 8px; }
-  }
+:root {
+  --bg:        #F5F2ED;
+  --surface:   #FFFFFF;
+  --surface2:  #F0EDE8;
+  --border:    #E2DDD6;
+  --text:      #1A1714;
+  --muted:     #8C867D;
+  --accent:    #2D5A3D;
+  --accent-lt: #EAF2EC;
+  --amber:     #C17D3C;
+  --amber-lt:  #FBF3E8;
+  --red:       #C0392B;
+  --red-lt:    #FBEAE8;
+  --teal:      #1A6B5A;
+  --teal-lt:   #E8F4F1;
+  --gold:      #B8952A;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.header {
+  background: var(--accent);
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.header-left h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: -.3px;
+}
+.header-left p { font-size: 12px; color: rgba(255,255,255,.6); margin-top: 2px; }
+.budget-pill {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.tabs {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  padding: 0 2rem;
+}
+.tab {
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color .15s;
+  font-family: 'DM Sans', sans-serif;
+}
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab .count {
+  background: var(--accent-lt);
+  color: var(--accent);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 10px;
+  margin-left: 5px;
+}
+.main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+.panel { display: none; }
+.panel.active { display: block; }
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.75rem;
+  margin-bottom: 1.25rem;
+}
+.form-card h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+  color: var(--text);
+}
+.field { margin-bottom: 1rem; }
+.field label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.field input, .field select, .field textarea {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 14px;
+  padding: 10px 14px;
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color .15s;
+}
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: var(--accent);
+  background: #fff;
+}
+.field textarea { resize: vertical; min-height: 70px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+.url-preview {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  padding: 8px 12px;
+  background: var(--accent-lt);
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--accent);
+}
+.url-preview a { color: var(--accent); font-weight: 500; word-break: break-all; }
+.criteria-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.criterion-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  transition: border-color .15s;
+}
+.criterion-card:hover { border-color: var(--accent); }
+.crit-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.crit-name { font-size: 13px; font-weight: 500; }
+.crit-peso {
+  font-size: 10px; font-weight: 600; padding: 2px 7px;
+  border-radius: 10px; background: var(--accent-lt); color: var(--accent);
+}
+.stars { display: flex; gap: 4px; margin-bottom: 4px; }
+.star { font-size: 20px; cursor: pointer; color: #DDD8D0; transition: color .1s; user-select: none; line-height: 1; }
+.star.on { color: var(--gold); }
+.star-label { font-size: 11px; color: var(--muted); }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1.25rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 10px 20px; border-radius: 8px; font-size: 13px; font-weight: 500;
+  cursor: pointer; border: none; font-family: 'DM Sans', sans-serif;
+  transition: opacity .15s, transform .1s;
+}
+.btn:active { transform: scale(.98); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { opacity: .9; }
+.btn-ghost { background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--text); border-color: var(--text); }
+.warning {
+  display: none; align-items: center; gap: 8px;
+  padding: 10px 14px; background: var(--amber-lt);
+  border: 1px solid #E8C99A; border-radius: 8px;
+  font-size: 12px; color: var(--amber); margin-top: .75rem;
+}
+.ranking-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; }
+.ranking-header h2 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; }
+.sort-select {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 12px; font-size: 12px;
+  color: var(--text); font-family: 'DM Sans', sans-serif; cursor: pointer;
+}
+.prop-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.5rem; margin-bottom: .875rem;
+  transition: box-shadow .2s; position: relative;
+}
+.prop-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+.prop-card.top { border-color: var(--gold); border-width: 2px; }
+.rank-badge {
+  position: absolute; top: -12px; left: 1.5rem;
+  font-size: 10px; font-weight: 600; padding: 3px 10px;
+  border-radius: 20px; letter-spacing: .05em; text-transform: uppercase;
+}
+.rank-1 { background: var(--gold); color: #fff; }
+.rank-2 { background: var(--muted); color: #fff; }
+.rank-3 { background: #B87333; color: #fff; }
+.prop-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+.prop-info { flex: 1; min-width: 0; }
+.prop-nombre { font-family: 'DM Serif Display', serif; font-size: 18px; font-weight: 400; margin-bottom: 4px; }
+.prop-meta { font-size: 12px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.meta-chip { background: var(--surface2); padding: 2px 8px; border-radius: 10px; font-size: 11px; }
+.meta-chip.over { background: var(--red-lt); color: var(--red); }
+.prop-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12px; color: var(--accent); margin-top: 6px;
+  text-decoration: none; font-weight: 500;
+}
+.prop-link:hover { text-decoration: underline; }
+.score-block { text-align: right; flex-shrink: 0; }
+.score-num { font-family: 'DM Serif Display', serif; font-size: 40px; line-height: 1; font-weight: 400; }
+.score-denom { font-size: 12px; color: var(--muted); }
+.verdict {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  padding: 3px 10px; border-radius: 20px; margin-top: 5px;
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.bar-wrap { height: 5px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin-bottom: 1rem; }
+.bar-fill { height: 100%; border-radius: 3px; transition: width .5s ease; }
+.criteria-breakdown { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; margin-bottom: 1rem; }
+.cb-item { text-align: center; }
+.cb-emoji { font-size: 16px; margin-bottom: 2px; }
+.cb-stars { font-size: 10px; color: var(--gold); letter-spacing: -1px; }
+.cb-label { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.cb-peso { font-size: 10px; color: var(--accent); font-weight: 500; }
+.prop-notes {
+  font-size: 12px; color: var(--muted);
+  border-top: 1px solid var(--border); padding-top: .75rem;
+  margin-top: .75rem; font-style: italic;
+}
+.prop-actions { display: flex; gap: 8px; margin-top: .875rem; flex-wrap: wrap; }
+.btn-sm {
+  font-size: 11px; padding: 5px 12px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--border); background: var(--surface2);
+  color: var(--muted); font-family: 'DM Sans', sans-serif; transition: all .15s;
+}
+.btn-sm:hover { color: var(--text); border-color: var(--text); }
+.btn-sm.danger:hover { color: var(--red); border-color: var(--red); }
+.empty { text-align: center; padding: 4rem 2rem; color: var(--muted); }
+.empty-icon { font-size: 40px; margin-bottom: 1rem; opacity: .4; }
+.empty h3 { font-family: 'DM Serif Display', serif; font-size: 20px; font-weight: 400; color: var(--text); margin-bottom: .5rem; }
+.empty p { font-size: 13px; }
+.criteria-table { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.ct-row { display: grid; grid-template-columns: 2.5rem 1fr 70px 60px; align-items: center; gap: 12px; padding: 14px 1.5rem; border-bottom: 1px solid var(--border); }
+.ct-row:last-child { border-bottom: none; }
+.ct-row.header { background: var(--surface2); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.ct-emoji { font-size: 18px; text-align: center; }
+.ct-name { font-size: 14px; font-weight: 500; }
+.ct-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
+.ct-peso { font-size: 14px; font-weight: 600; color: var(--accent); text-align: center; }
+.ct-bar-wrap { height: 4px; background: var(--surface2); border-radius: 2px; overflow: hidden; }
+.ct-bar { height: 100%; border-radius: 2px; background: var(--accent); }
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,23,20,.5); z-index: 100;
+  align-items: center; justify-content: center; padding: 1rem;
+}
+.modal-overlay.open { display: flex; }
+.modal { background: var(--surface); border-radius: 16px; padding: 1.75rem; width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; }
+.modal h2 { font-family: 'DM Serif Display', serif; font-size: 18px; font-weight: 400; margin-bottom: 1.25rem; }
+.modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 1.25rem; }
+@media (max-width: 600px) {
+  .criteria-grid { grid-template-columns: 1fr; }
+  .grid2, .grid3 { grid-template-columns: 1fr; }
+  .criteria-breakdown { grid-template-columns: repeat(5,1fr); gap: 4px; }
+  .header { padding: 1.25rem 1rem; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .tabs { padding: 0 1rem; }
+  .main { padding: 1.25rem 1rem; }
+}
 </style>
 </head>
 <body>
+
 <div class="header">
-  <div>
-    <div style="font-size:11px;color:#888;margin-bottom:3px">🏡 Casa CDMX — Buscador</div>
-    <h1>Evaluador de propiedades</h1>
-    <div class="sub">Sur-poniente CDMX · 5 criterios ponderados</div>
+  <div class="header-left">
+    <h1>Evaluador de Propiedades</h1>
+    <p>Sur-poniente CDMX · 5 criterios ponderados · septiembre 2026</p>
   </div>
-  <span class="filter-pill">Filtro: ≤ $60,000 MXN/mes</span>
+  <span class="budget-pill">≤ $60,000 MXN/mes</span>
 </div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('nueva')">Nueva propiedad</button>
+  <button class="tab" onclick="switchTab('lista')">Propiedades guardadas <span class="count" id="count-badge">0</span></button>
+  <button class="tab" onclick="switchTab('criterios')">Criterios</button>
+</div>
+
 <div class="main">
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('nueva')">Nueva propiedad</button>
-    <button class="tab" onclick="switchTab('lista')">Mis propiedades</button>
-    <button class="tab" onclick="switchTab('criterios')">Criterios</button>
-  </div>
+
   <div id="panel-nueva" class="panel active">
-    <p class="section-label">Datos de la propiedad</p>
-    <div class="card">
-      <div style="margin-bottom:14px">
+    <div class="form-card">
+      <h2>Datos de la propiedad</h2>
+      <div class="field">
+        <label>URL del anuncio</label>
+        <input type="url" id="f-url" placeholder="Pega aquí el enlace de Inmuebles24, Lamudi, MercadoLibre…" oninput="previewUrl()">
+        <div class="url-preview" id="url-preview">
+          <span>🔗</span>
+          <a id="url-link" href="#" target="_blank" rel="noopener"></a>
+        </div>
+      </div>
+      <div class="field">
         <label>Nombre o referencia</label>
-        <input type="text" id="nombre" placeholder="Ej. Casa Coyoacán, Calle Moctezuma 45">
+        <input type="text" id="f-nombre" placeholder="Ej. Casa Del Valle Sur, calle Amores">
+      </div>
+      <div class="grid3">
+        <div class="field">
+          <label>Colonia</label>
+          <select id="f-colonia">
+            <option value="">Seleccionar…</option>
+            <option>Del Valle Sur</option>
+            <option>La Florida</option>
+            <option>Del Carmen Coyoacán</option>
+            <option>Romero de Terreros</option>
+            <option>Narvarte Poniente</option>
+            <option>Pedregal de San Francisco</option>
+            <option>Acacias</option>
+            <option>San Ángel Inn</option>
+            <option>Las Águilas</option>
+            <option>San Jerónimo Lídice</option>
+            <option>Pedregal de San Ángel</option>
+            <option>San Ángel</option>
+            <option>Otra</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Renta mensual (MXN)</label>
+          <input type="number" id="f-renta" placeholder="55000" oninput="checkRenta()">
+        </div>
+        <div class="field">
+          <label>Mantenimiento incluido</label>
+          <select id="f-mant">
+            <option value="si">Sí, ya incluido</option>
+            <option value="no">No, es aparte</option>
+            <option value="nd">No sé</option>
+          </select>
+        </div>
       </div>
       <div class="grid2">
-        <div>
-          <label>Colonia</label>
-          <input type="text" id="colonia" placeholder="Ej. Coyoacán">
+        <div class="field">
+          <label>m² construcción (aprox.)</label>
+          <input type="number" id="f-m2" placeholder="180">
         </div>
-        <div>
-          <label>Renta mensual (MXN, incl. mantenimiento)</label>
-          <input type="number" id="renta" placeholder="55000" max="60000">
+        <div class="field">
+          <label>Recámaras</label>
+          <input type="number" id="f-rec" placeholder="3" min="1" max="10">
         </div>
       </div>
-      <div style="margin-top:14px">
-        <label>URL del anuncio (opcional)</label>
-        <input type="text" id="url" placeholder="https://...">
+      <div class="field">
+        <label>Notas libres</label>
+        <textarea id="f-notas" placeholder="Observaciones, puntos a verificar, pros y contras…"></textarea>
       </div>
-      <div style="margin-top:14px">
-        <label>Notas</label>
-        <textarea id="notas" rows="2" placeholder="Observaciones libres..."></textarea>
+      <div class="warning" id="renta-warning">
+        ⚠️ La renta supera el presupuesto de $60,000 MXN. Esta propiedad no pasa el filtro duro.
       </div>
     </div>
-    <p class="section-label" style="margin-top:1.5rem">Calificación por criterio</p>
-    <div class="card" id="star-form"></div>
-    <div id="renta-warning" style="display:none;color:#e24b4a;font-size:12px;margin-top:.5rem">
-      ⚠️ La renta supera el presupuesto máximo de $60,000 MXN. Esta propiedad no pasa el filtro duro.
+
+    <div class="form-card">
+      <h2>Calificación por criterio</h2>
+      <div class="criteria-grid" id="star-form"></div>
     </div>
-    <div class="btn-group">
+
+    <div class="btn-row">
       <button class="btn btn-primary" onclick="guardar()">Guardar propiedad</button>
-      <button class="btn btn-ghost" onclick="limpiar()">Limpiar</button>
+      <button class="btn btn-ghost" onclick="limpiar()">Limpiar formulario</button>
     </div>
   </div>
+
   <div id="panel-lista" class="panel">
-    <p class="section-label">Propiedades evaluadas — ordenadas por rating</p>
+    <div class="ranking-header">
+      <h2>Propiedades guardadas</h2>
+      <select class="sort-select" onchange="renderLista(this.value)">
+        <option value="rating">Ordenar: por rating</option>
+        <option value="precio">Ordenar: por precio</option>
+        <option value="fecha">Ordenar: más recientes</option>
+      </select>
+    </div>
     <div id="lista-container"></div>
   </div>
+
   <div id="panel-criterios" class="panel">
-    <p class="section-label">Sistema de pesos acordado</p>
-    <div class="card">
-      <div id="criterios-display"></div>
-      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">
-        El precio no forma parte del rating — es condición de entrada (filtro duro ≤ $60k/mes).
+    <div class="criteria-table">
+      <div class="ct-row header">
+        <div></div>
+        <div>Criterio</div>
+        <div style="text-align:center">Peso</div>
+        <div>Distribución</div>
       </div>
+      <div id="criterios-display"></div>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:1rem;padding:0 .25rem">
+      El precio no forma parte del rating — es condición de entrada (filtro duro ≤ $60,000 MXN/mes con mantenimiento incluido).
+    </p>
+  </div>
+
+</div>
+
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content">
+    <h2>Editar propiedad</h2>
+    <div id="modal-fields"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModalDirect()">Cancelar</button>
+      <button class="btn btn-primary" onclick="saveEdit()">Guardar cambios</button>
     </div>
   </div>
 </div>
+
 <script>
 const CRITERIOS = [
-  { id: 'jardin',    nombre: 'Jardín',                 sub: 'Tamaño, estado y privacidad',              peso: 30, emoji: '🌿' },
-  { id: 'ubicacion', nombre: 'Ubicación y colonia',    sub: 'Perfil, seguridad, ambiente de la zona',   peso: 25, emoji: '📍' },
-  { id: 'tamanio',   nombre: 'Tamaño y distribución',  sub: 'm², recámaras, funcionalidad del espacio', peso: 20, emoji: '📐' },
-  { id: 'estado',    nombre: 'Estado del inmueble',    sub: 'Antigüedad, remodelaciones, instalaciones',peso: 20, emoji: '🔧' },
-  { id: 'estacion',  nombre: 'Estacionamiento',         sub: 'Cajones cubiertos y seguros',              peso:  5, emoji: '🚗' },
+  { id:'jardin',    nombre:'Jardín',               emoji:'🌿', sub:'Tamaño, estado y privacidad',               peso:30 },
+  { id:'ubicacion', nombre:'Ubicación',             emoji:'📍', sub:'Perfil, seguridad, ambiente de la colonia',  peso:25 },
+  { id:'tamanio',   nombre:'Tamaño y distribución', emoji:'📐', sub:'m², recámaras, funcionalidad',              peso:20 },
+  { id:'estado',    nombre:'Estado del inmueble',   emoji:'🔧', sub:'Antigüedad, remodelaciones, instalaciones', peso:20 },
+  { id:'estacion',  nombre:'Estacionamiento',        emoji:'🚗', sub:'Cajones cubiertos y seguros',               peso:5  },
 ];
-const LABELS = ['', 'Muy malo', 'Malo', 'Regular', 'Bueno', 'Excelente'];
+const LABELS = ['','Muy malo','Malo','Regular','Bueno','Excelente'];
 let scores = {};
-let props = JSON.parse(localStorage.getItem('casas_cdmx') || '[]');
+let props  = JSON.parse(localStorage.getItem('casas_cdmx_v2') || '[]');
+let editId = null;
 CRITERIOS.forEach(c => scores[c.id] = 3);
-function saveProps() { localStorage.setItem('casas_cdmx', JSON.stringify(props)); }
+
+function save() { localStorage.setItem('casas_cdmx_v2', JSON.stringify(props)); updateCount(); }
+function updateCount() { document.getElementById('count-badge').textContent = props.length; }
+
 function calcRating(s) {
-  return Math.round(CRITERIOS.reduce((acc, c) => acc + (s[c.id] / 5) * c.peso, 0));
+  return Math.round(CRITERIOS.reduce((a,c) => a + (s[c.id]/5)*c.peso, 0));
 }
+function verdictCfg(r) {
+  if (r>=80) return { color:'#1A6B5A', bg:'#E8F4F1', txt:'Excelente'    };
+  if (r>=65) return { color:'#2D5A3D', bg:'#EAF2EC', txt:'Buena opción' };
+  if (r>=50) return { color:'#C17D3C', bg:'#FBF3E8', txt:'Aceptable'    };
+  return           { color:'#C0392B', bg:'#FBEAE8', txt:'Por debajo'   };
+}
+
 function renderStarForm() {
-  document.getElementById('star-form').innerHTML = CRITERIOS.map(c => `
-    <div class="star-group" style="margin-bottom:14px">
-      <label>${c.emoji} ${c.nombre} <span style="color:var(--accent);font-weight:500">${c.peso}%</span> — <span style="font-weight:400;color:#aaa">${c.sub}</span></label>
-      <div class="stars" id="stars-${c.id}">
-        ${[1,2,3,4,5].map(n => `<span class="star${n<=scores[c.id]?' on':''}" onclick="setStar('${c.id}',${n})">★</span>`).join('')}
+  const el = document.getElementById('star-form');
+  el.innerHTML = CRITERIOS.map(c => {
+    const v = scores[c.id] || 3;
+    const stars = [1,2,3,4,5].map(n =>
+      `<span class="star${n<=v?' on':''}" onclick="setStar('${c.id}',${n})">★</span>`
+    ).join('');
+    return `<div class="criterion-card">
+      <div class="crit-header">
+        <span class="crit-name">${c.emoji} ${c.nombre}</span>
+        <span class="crit-peso">${c.peso}%</span>
       </div>
-      <div class="star-label" id="lbl-${c.id}">${LABELS[scores[c.id]]}</div>
-    </div>
-  `).join('');
+      <div class="stars" id="stars-${c.id}">${stars}</div>
+      <div class="star-label" id="lbl-${c.id}">${LABELS[v]}</div>
+    </div>`;
+  }).join('');
 }
+
 function setStar(id, v) {
   scores[id] = v;
   document.getElementById('stars-'+id).innerHTML =
-    [1,2,3,4,5].map(n => `<span class="star${n<=v?' on':''}" onclick="setStar('${id}',${n})">★</span>`).join('');
+    [1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="setStar('${id}',${n})">★</span>`).join('');
   document.getElementById('lbl-'+id).textContent = LABELS[v];
 }
-function verdictConfig(r) {
-  if (r >= 80) return { color: '#1d9e75', bg: 'rgba(29,158,117,.15)', txt: 'Excelente' };
-  if (r >= 65) return { color: '#5dcaa5', bg: 'rgba(93,202,165,.15)', txt: 'Buena opción' };
-  if (r >= 50) return { color: '#ef9f27', bg: 'rgba(239,159,39,.15)',  txt: 'Aceptable' };
-  return           { color: '#e24b4a', bg: 'rgba(226,75,74,.15)',   txt: 'Por debajo' };
+
+function previewUrl() {
+  const val = document.getElementById('f-url').value.trim();
+  const prev = document.getElementById('url-preview');
+  const lnk  = document.getElementById('url-link');
+  if (val && (val.startsWith('http://') || val.startsWith('https://'))) {
+    try {
+      const u = new URL(val);
+      lnk.href = val;
+      lnk.textContent = u.hostname + (u.pathname.length > 40 ? u.pathname.slice(0,40)+'…' : u.pathname);
+      prev.style.display = 'flex';
+    } catch { prev.style.display = 'none'; }
+  } else { prev.style.display = 'none'; }
 }
+
+function checkRenta() {
+  const v = parseInt(document.getElementById('f-renta').value)||0;
+  document.getElementById('renta-warning').style.display = v>60000 ? 'flex' : 'none';
+}
+
 function guardar() {
-  const nombre = document.getElementById('nombre').value.trim();
-  const renta  = parseInt(document.getElementById('renta').value) || 0;
+  const nombre = document.getElementById('f-nombre').value.trim();
+  const url    = document.getElementById('f-url').value.trim();
   if (!nombre) { alert('Por favor ingresa un nombre para la propiedad.'); return; }
+  const renta = parseInt(document.getElementById('f-renta').value)||0;
   if (renta > 60000) {
-    if (!confirm('La renta supera el filtro de $60,000 MXN. ¿Deseas guardarla de todos modos para referencia?')) return;
+    if (!confirm('La renta supera $60,000 MXN. ¿Guardar de todos modos para referencia?')) return;
   }
   props.push({
     id:      Date.now(),
     nombre,
-    colonia: document.getElementById('colonia').value.trim(),
+    url,
+    colonia: document.getElementById('f-colonia').value,
     renta,
-    url:     document.getElementById('url').value.trim(),
-    notas:   document.getElementById('notas').value.trim(),
-    scores:  { ...scores },
+    mant:    document.getElementById('f-mant').value,
+    m2:      document.getElementById('f-m2').value,
+    rec:     document.getElementById('f-rec').value,
+    notas:   document.getElementById('f-notas').value.trim(),
+    scores:  {...scores},
     rating:  calcRating(scores),
-    fecha:   new Date().toLocaleDateString('es-MX'),
+    fecha:   new Date().toLocaleDateString('es-MX', {day:'numeric',month:'short',year:'numeric'}),
   });
-  saveProps();
+  save();
   limpiar();
-  renderLista();
   switchTab('lista');
 }
+
 function limpiar() {
-  ['nombre','colonia','renta','url','notas'].forEach(id => document.getElementById(id).value = '');
+  ['f-url','f-nombre','f-renta','f-m2','f-rec','f-notas'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+  document.getElementById('f-colonia').value = '';
+  document.getElementById('f-mant').value = 'si';
+  document.getElementById('url-preview').style.display = 'none';
+  document.getElementById('renta-warning').style.display = 'none';
   CRITERIOS.forEach(c => scores[c.id] = 3);
   renderStarForm();
-  document.getElementById('renta-warning').style.display = 'none';
 }
+
 function deleteProp(id) {
   if (!confirm('¿Eliminar esta propiedad?')) return;
   props = props.filter(p => p.id !== id);
-  saveProps();
+  save();
   renderLista();
 }
-function renderLista() {
-  const el = document.getElementById('lista-container');
-  if (!props.length) {
-    el.innerHTML = '<div class="empty">Aún no hay propiedades guardadas. Usa "Nueva propiedad" para agregar la primera.</div>';
-    return;
-  }
-  const sorted = [...props].sort((a, b) => b.rating - a.rating);
-  el.innerHTML = sorted.map((p, i) => {
-    const v = verdictConfig(p.rating);
-    const top = CRITERIOS.slice().sort((a,b) => (p.scores[b.id]*b.peso)-(p.scores[a.id]*a.peso));
-    const rentaStr = p.renta ? `$${p.renta.toLocaleString('es-MX')} MXN/mes` : 'Renta no registrada';
-    const overBudget = p.renta > 60000;
-    const originalIdx = props.indexOf(p);
-    return `<div class="prop-card">
-      <div class="prop-header">
-        <div style="flex:1;min-width:0">
-          <div class="prop-nombre">${i===0?'<span class="trophy">🏆</span>':''}${p.nombre}</div>
-          <div class="prop-meta">${p.colonia ? p.colonia+' · ':''} ${rentaStr}${overBudget?' ⚠️ sobre presupuesto':''} · ${p.fecha}</div>
-          ${p.url ? `<div style="margin-top:4px"><a href="${p.url}" target="_blank" style="font-size:12px">Ver anuncio →</a></div>` : ''}
-        </div>
-        <div style="text-align:right;margin-left:1rem;flex-shrink:0">
-          <div class="rating-big" style="color:${v.color}">${p.rating}</div>
-          <div class="rating-sub">/ 100 pts</div>
-          <span class="verdict-badge" style="background:${v.bg};color:${v.color}">${v.txt}</span>
-        </div>
+
+let editScores = {};
+function openEdit(id) {
+  const p = props.find(x => x.id === id);
+  if (!p) return;
+  editId = id;
+  editScores = {...p.scores};
+  const colonias = ['Del Valle Sur','La Florida','Del Carmen Coyoacán','Romero de Terreros','Narvarte Poniente','Pedregal de San Francisco','Acacias','San Ángel Inn','Las Águilas','San Jerónimo Lídice','Pedregal de San Ángel','San Ángel','Otra'];
+  document.getElementById('modal-fields').innerHTML = `
+    <div class="field"><label>Nombre</label><input type="text" id="e-nombre" value="${p.nombre}"></div>
+    <div class="field"><label>URL del anuncio</label><input type="url" id="e-url" value="${p.url||''}"></div>
+    <div class="grid2">
+      <div class="field"><label>Colonia</label>
+        <select id="e-colonia">
+          <option value="">Seleccionar…</option>
+          ${colonias.map(c=>`<option${c===p.colonia?' selected':''}>${c}</option>`).join('')}
+        </select>
       </div>
-      <div class="bar-wrap"><div class="bar-fill" style="width:${p.rating}%;background:${v.color}"></div></div>
-      <div class="mini-grid">
-        ${top.map(c => `<div class="mini-row"><span class="mini-label">${c.emoji} ${c.nombre}</span><span style="color:${p.scores[c.id]>=4?'#1d9e75':p.scores[c.id]===3?'#888':'#e24b4a'}">${'★'.repeat(p.scores[c.id])}${'☆'.repeat(5-p.scores[c.id])}</span></div>`).join('')}
+      <div class="field"><label>Renta mensual (MXN)</label><input type="number" id="e-renta" value="${p.renta||''}"></div>
+    </div>
+    <div class="field"><label>Notas</label><textarea id="e-notas">${p.notas||''}</textarea></div>
+    <div style="margin-top:1rem">
+      <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.75rem">Recalificar criterios</p>
+      <div class="criteria-grid" id="edit-star-form"></div>
+    </div>`;
+  renderEditStars();
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function renderEditStars() {
+  const el = document.getElementById('edit-star-form');
+  if (!el) return;
+  el.innerHTML = CRITERIOS.map(c => {
+    const v = editScores[c.id] || 3;
+    const stars = [1,2,3,4,5].map(n =>
+      `<span class="star${n<=v?' on':''}" onclick="editStar('${c.id}',${n})">★</span>`
+    ).join('');
+    return `<div class="criterion-card">
+      <div class="crit-header">
+        <span class="crit-name">${c.emoji} ${c.nombre}</span>
+        <span class="crit-peso">${c.peso}%</span>
       </div>
-      ${p.notas ? `<div style="margin-top:.75rem;font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:.75rem">${p.notas}</div>` : ''}
-      <button class="btn-delete" onclick="deleteProp(${p.id})">Eliminar</button>
+      <div class="stars" id="edit-stars-${c.id}">${stars}</div>
+      <div class="star-label" id="edit-lbl-${c.id}">${LABELS[v]}</div>
     </div>`;
   }).join('');
 }
-function renderCriterios() {
-  document.getElementById('criterios-display').innerHTML = CRITERIOS.map((c,i) => `
-    <div class="crit-row">
-      <span style="font-size:12px;color:var(--muted)">${i+1}</span>
-      <div>
-        <div class="crit-name">${c.emoji} ${c.nombre}</div>
-        <div class="crit-sub">${c.sub}</div>
-      </div>
-      <div class="peso">${c.peso}%</div>
-    </div>
-  `).join('');
+
+function editStar(id, v) {
+  editScores[id] = v;
+  document.getElementById('edit-stars-'+id).innerHTML =
+    [1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="editStar('${id}',${n})">★</span>`).join('');
+  document.getElementById('edit-lbl-'+id).textContent = LABELS[v];
 }
+
+function saveEdit() {
+  const p = props.find(x => x.id === editId);
+  if (!p) return;
+  p.nombre  = document.getElementById('e-nombre').value.trim() || p.nombre;
+  p.url     = document.getElementById('e-url').value.trim();
+  p.colonia = document.getElementById('e-colonia').value;
+  p.renta   = parseInt(document.getElementById('e-renta').value)||p.renta;
+  p.notas   = document.getElementById('e-notas').value.trim();
+  p.scores  = {...editScores};
+  p.rating  = calcRating(editScores);
+  save();
+  closeModalDirect();
+  renderLista();
+}
+
+function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalDirect(); }
+function closeModalDirect() { document.getElementById('modal-overlay').classList.remove('open'); editId = null; }
+
+function renderLista(sortBy) {
+  sortBy = sortBy || 'rating';
+  const el = document.getElementById('lista-container');
+  if (!props.length) {
+    el.innerHTML = `<div class="empty">
+      <div class="empty-icon">🏡</div>
+      <h3>Aún no hay propiedades guardadas</h3>
+      <p>Pega el enlace de cualquier propiedad en "Nueva propiedad" y califica sus criterios.</p>
+    </div>`;
+    return;
+  }
+  let sorted = [...props];
+  if (sortBy==='rating')  sorted.sort((a,b) => b.rating - a.rating);
+  else if (sortBy==='precio') sorted.sort((a,b) => (a.renta||0)-(b.renta||0));
+  else sorted.sort((a,b) => b.id - a.id);
+
+  el.innerHTML = sorted.map((p, i) => {
+    const v  = verdictCfg(p.rating);
+    const fc = p.rating>=80?'#1A6B5A':p.rating>=65?'#2D5A3D':p.rating>=50?'#C17D3C':'#C0392B';
+    const over = p.renta > 60000;
+    const rentaStr = p.renta ? `$${p.renta.toLocaleString('es-MX')} MXN` : 'Renta no ingresada';
+    const rankBadge = i<3 && sortBy==='rating'
+      ? `<div class="rank-badge rank-${i+1}">${['#1 — Top pick','#2 — Opción B','#3 — Opción C'][i]}</div>` : '';
+    const urlBtn = p.url
+      ? `<a class="prop-link" href="${p.url}" target="_blank" rel="noopener">Ver anuncio →</a>` : '';
+    const breakdown = CRITERIOS.map(c => {
+      const sv = p.scores[c.id]||3;
+      return `<div class="cb-item">
+        <div class="cb-emoji">${c.emoji}</div>
+        <div class="cb-stars">${'★'.repeat(sv)}${'☆'.repeat(5-sv)}</div>
+        <div class="cb-label">${c.nombre.split(' ')[0]}</div>
+        <div class="cb-peso">${c.peso}%</div>
+      </div>`;
+    }).join('');
+    return `<div class="prop-card${i===0&&sortBy==='rating'?' top':''}">
+      ${rankBadge}
+      <div class="prop-top">
+        <div class="prop-info">
+          <div class="prop-nombre">${p.nombre}</div>
+          <div class="prop-meta">
+            ${p.colonia?`<span class="meta-chip">${p.colonia}</span>`:''}
+            <span class="meta-chip${over?' over':''}">${rentaStr}${over?' ⚠️':''}</span>
+            ${p.m2?`<span class="meta-chip">${p.m2} m²</span>`:''}
+            ${p.rec?`<span class="meta-chip">${p.rec} rec.</span>`:''}
+            <span style="color:var(--muted);font-size:11px">${p.fecha}</span>
+          </div>
+          ${urlBtn}
+        </div>
+        <div class="score-block">
+          <div class="score-num" style="color:${fc}">${p.rating}</div>
+          <div class="score-denom">/ 100</div>
+          <div class="verdict" style="background:${v.bg};color:${v.color}">${v.txt}</div>
+        </div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${p.rating}%;background:${fc}"></div></div>
+      <div class="criteria-breakdown">${breakdown}</div>
+      ${p.notas?`<div class="prop-notes">${p.notas}</div>`:''}
+      <div class="prop-actions">
+        <button class="btn-sm" onclick="openEdit(${p.id})">Editar</button>
+        <button class="btn-sm danger" onclick="deleteProp(${p.id})">Eliminar</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderCriterios() {
+  document.getElementById('criterios-display').innerHTML = CRITERIOS.map(c => `
+    <div class="ct-row">
+      <div class="ct-emoji">${c.emoji}</div>
+      <div><div class="ct-name">${c.nombre}</div><div class="ct-sub">${c.sub}</div></div>
+      <div class="ct-peso">${c.peso}%</div>
+      <div><div class="ct-bar-wrap"><div class="ct-bar" style="width:${c.peso*3.33}%"></div></div></div>
+    </div>`).join('');
+}
+
 function switchTab(id) {
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', ['nueva','lista','criterios'][i]===id));
+  document.querySelectorAll('.tab').forEach((t,i) =>
+    t.classList.toggle('active', ['nueva','lista','criterios'][i]===id));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-'+id).classList.add('active');
   if (id==='lista') renderLista();
 }
+
 document.addEventListener('DOMContentLoaded', () => {
   renderStarForm();
   renderCriterios();
-  renderLista();
-  document.addEventListener('input', e => {
-    if (e.target.id === 'renta') {
-      document.getElementById('renta-warning').style.display =
-        parseInt(e.target.value) > 60000 ? 'block' : 'none';
-    }
-  });
+  updateCount();
 });
 </script>
 </body>
