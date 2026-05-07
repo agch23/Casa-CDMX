@@ -1,34 +1,47 @@
 # Búsqueda de casa — 7 de mayo de 2026
 
-> **Filtro duro:** Renta ≤ **$60,000 MXN/mes** con mantenimiento incluido · Casa independiente o en condominio
+> **Filtro duro:** Renta ≤ **$60,000 MXN/mes** con mantenimiento · Casa independiente o en condominio
 > **Zona:** Sur-poniente CDMX — Coyoacán · Del Valle · Narvarte · Insurgentes Sur · Pedregal de San Ángel · Florida · Álamos · Portales · Las Águilas · San Jerónimo · Copilco · Tlalpan · Jardines del Pedregal · Santa Úrsula
 
 ---
 
 ## 🔗 Búsquedas del día
 
-Abre cada portal con los filtros pre-aplicados:
+### 🏠 Inmuebles24
+*Mayor volumen de casas en CDMX sur*
 
-### 🏠 [Inmuebles24](https://www.inmuebles24.com/casas-en-renta-en-ciudad-de-mexico.html?precio-desde=0&precio-hasta=60000&operacion=2&tipo-propiedad=1)
-Mayor volumen de casas en CDMX sur
+- [Coyoacán](https://www.inmuebles24.com/casas-en-renta-en-coyoacan-ciudad-de-mexico.html?precio-hasta=60000)
+- [Del Valle](https://www.inmuebles24.com/casas-en-renta-en-del-valle-ciudad-de-mexico.html?precio-hasta=60000)
+- [Narvarte / Álamos](https://www.inmuebles24.com/casas-en-renta-en-narvarte-ciudad-de-mexico.html?precio-hasta=60000)
+- [Pedregal / San Jerónimo](https://www.inmuebles24.com/casas-en-renta-en-pedregal-de-san-angel-ciudad-de-mexico.html?precio-hasta=60000)
 
-### 🔍 [Lamudi](https://www.lamudi.com.mx/distrito-federal/casas/for-rent/?price%5Bmax%5D=60000&subdivision%5B%5D=Coyoacan%2CDel%2BValle%2CNarvarte%2CPedregal)
-Buen filtro por colonia específica
+### 🔍 Lamudi
+*Buen filtro por colonia específica y precio*
 
-### 📋 [Vivanuncios](https://www.vivanuncios.com.mx/s-casas-en-renta/ciudad-de-mexico/v1c1096l1096p1?priceMax=60000&ad_type=OFFER&re_type=residential)
-Propiedades de particulares y agencias
+- [Coyoacán hasta $60k](https://www.lamudi.com.mx/distrito-federal/coyoacan/casa/for-rent/price:0-60000/)
+- [Del Valle hasta $60k](https://www.lamudi.com.mx/distrito-federal/benito-juarez/del-valle/casa/for-rent/price:0-60000/)
+- [Álvaro Obregón (Águilas/Pedregal) $60k](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/casa/for-rent/price:0-60000/)
 
-### 🛒 [MercadoLibre Inmuebles](https://inmuebles.mercadolibre.com.mx/casas/alquiler/distrito-federal/?price=%2A-60000)
-Amplio inventario, actualización frecuente
+### 📋 Vivanuncios
+*Propiedades de particulares y agencias*
 
-### 🏢 [Century21](https://www.century21mexico.com/propiedades?tipo=casas&operacion=renta&estado=ciudad-de-mexico&precio_hasta=60000)
-Agencia con presencia en Coyoacán y Del Valle
+- [Casas renta sur CDMX hasta $60k](https://www.vivanuncios.com.mx/s-casas-en-renta/ciudad-de-mexico/v1c1096l1096p1?ad_type=OFFER&re_type=residential&priceMax=60000&re_subtype=house)
+
+### 🛒 MercadoLibre Inmuebles
+*Amplio inventario, actualización frecuente*
+
+- [Casas renta CDMX hasta $60k](https://inmuebles.mercadolibre.com.mx/casas/alquiler/distrito-federal/_PriceRange_0MXN-60000MXN)
+
+### 🏢 Century21
+*Agencia con presencia en Coyoacán y Del Valle*
+
+- [Casas renta CDMX](https://www.century21mexico.com/busqueda?tipoOperacion=2&tipoPropiedad=2&estado=9&precioMax=60000)
 
 ---
 
 ## 📊 Evaluar propiedades encontradas
 
-→ [**Abrir evaluador**](evaluador.html) — ingresa las propiedades que encuentres y calcula su rating automáticamente.
+→ [**Abrir evaluador**](evaluador.html) — califica cada propiedad y obtén su rating ponderado automáticamente.
 
 ---
 
@@ -46,4 +59,4 @@ Agencia con presencia en Coyoacán y Del Valle
 
 ---
 
-*Generado automáticamente · 2026-05-07 20:19 UTC*
+*Generado automáticamente · 2026-05-07 20:26 UTC*
