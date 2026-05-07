@@ -1,0 +1,86 @@
+[
+  {
+    "nombre": "Del Valle Sur",
+    "alcaldia": "Benito Juárez",
+    "cp": "03200",
+    "slug_lamudi": "benito-juarez/del-valle-sur",
+    "slug_i24": "del-valle-sur-ciudad-de-mexico"
+  },
+  {
+    "nombre": "La Florida",
+    "alcaldia": "Álvaro Obregón",
+    "cp": "01030",
+    "slug_lamudi": "alvaro-obregon/la-florida",
+    "slug_i24": "florida-ciudad-de-mexico"
+  },
+  {
+    "nombre": "Del Carmen Coyoacán",
+    "alcaldia": "Coyoacán",
+    "cp": "04100",
+    "slug_lamudi": "coyoacan/del-carmen",
+    "slug_i24": "del-carmen-ciudad-de-mexico"
+  },
+  {
+    "nombre": "Romero de Terreros",
+    "alcaldia": "Coyoacán",
+    "cp": "04310",
+    "slug_lamudi": "coyoacan/romero-de-terreros",
+    "slug_i24": "romero-de-terreros-ciudad-de-mexico"
+  },
+  {
+    "nombre": "Narvarte Poniente",
+    "alcaldia": "Benito Juárez",
+    "cp": "03020",
+    "slug_lamudi": "benito-juarez/narvarte-poniente",
+    "slug_i24": "narvarte-poniente-ciudad-de-mexico"
+  },
+  {
+    "nombre": "Pedregal de San Francisco",
+    "alcaldia": "Coyoacán",
+    "cp": "04320",
+    "slug_lamudi": "coyoacan/pedregal-de-san-francisco",
+    "slug_i24": "pedregal-de-san-francisco-ciudad-de-mexico"
+  },
+  {
+    "nombre": "Acacias",
+    "alcaldia": "Benito Juárez",
+    "cp": "03240",
+    "slug_lamudi": "benito-juarez/acacias-1",
+    "slug_i24": "acacias-ciudad-de-mexico"
+  },
+  {
+    "nombre": "San Ángel Inn",
+    "alcaldia": "Álvaro Obregón",
+    "cp": "01060",
+    "slug_lamudi": "alvaro-obregon/san-angel-inn",
+    "slug_i24": "san-angel-inn-ciudad-de-mexico"
+  },
+  {
+    "nombre": "Las Águilas",
+    "alcaldia": "Álvaro Obregón",
+    "cp": "01710",
+    "slug_lamudi": "alvaro-obregon/las-aguilas",
+    "slug_i24": "las-aguilas-ciudad-de-mexico"
+  },
+  {
+    "nombre": "San Jerónimo Lídice",
+    "alcaldia": "Magdalena Contreras",
+    "cp": "10200",
+    "slug_lamudi": "la-magdalena-contreras/san-jeronimo-lidice",
+    "slug_i24": "san-jeronimo-lidice-ciudad-de-mexico"
+  },
+  {
+    "nombre": "Pedregal de San Ángel",
+    "alcaldia": "Álvaro Obregón",
+    "cp": "01900",
+    "slug_lamudi": "alvaro-obregon/jardines-del-pedregal",
+    "slug_i24": "jardines-del-pedregal-ciudad-de-mexico"
+  },
+  {
+    "nombre": "San Ángel",
+    "alcaldia": "Álvaro Obregón",
+    "cp": "01000",
+    "slug_lamudi": "alvaro-obregon/san-angel",
+    "slug_i24": "san-angel-ciudad-de-mexico"
+  }
+]

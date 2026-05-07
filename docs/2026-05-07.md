@@ -1,62 +1,103 @@
 # Búsqueda de casa — 7 de mayo de 2026
 
 > **Filtro duro:** Renta ≤ **$60,000 MXN/mes** con mantenimiento · Casa independiente o en condominio
-> **Zona:** Sur-poniente CDMX — Coyoacán · Del Valle · Narvarte · Insurgentes Sur · Pedregal de San Ángel · Florida · Álamos · Portales · Las Águilas · San Jerónimo · Copilco · Tlalpan · Jardines del Pedregal · Santa Úrsula
+> **Colonias:** Del Valle Sur · La Florida · Del Carmen Coyoacán · Romero de Terreros · Narvarte Poniente · Pedregal de San Francisco · Acacias · San Ángel Inn · Las Águilas · San Jerónimo Lídice · Pedregal de San Ángel · San Ángel
 
 ---
 
-## 🔗 Búsquedas del día
+## 🏠 Inmuebles24
+*Mayor volumen — una URL por colonia con precio en la ruta*
 
-### 🏠 Inmuebles24
-*Mayor volumen de casas en CDMX sur*
+- [Del Valle Sur — casas](https://www.inmuebles24.com/casas-en-renta-en-del-valle-sur-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-del-valle-sur-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 03200 · Benito Juárez)*
+- [La Florida — casas](https://www.inmuebles24.com/casas-en-renta-en-florida-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-florida-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 01030 · Álvaro Obregón)*
+- [Del Carmen Coyoacán — casas](https://www.inmuebles24.com/casas-en-renta-en-del-carmen-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-del-carmen-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 04100 · Coyoacán)*
+- [Romero de Terreros — casas](https://www.inmuebles24.com/casas-en-renta-en-romero-de-terreros-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-romero-de-terreros-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 04310 · Coyoacán)*
+- [Narvarte Poniente — casas](https://www.inmuebles24.com/casas-en-renta-en-narvarte-poniente-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-narvarte-poniente-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 03020 · Benito Juárez)*
+- [Pedregal de San Francisco — casas](https://www.inmuebles24.com/casas-en-renta-en-pedregal-de-san-francisco-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-pedregal-de-san-francisco-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 04320 · Coyoacán)*
+- [Acacias — casas](https://www.inmuebles24.com/casas-en-renta-en-acacias-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-acacias-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 03240 · Benito Juárez)*
+- [San Ángel Inn — casas](https://www.inmuebles24.com/casas-en-renta-en-san-angel-inn-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-san-angel-inn-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 01060 · Álvaro Obregón)*
+- [Las Águilas — casas](https://www.inmuebles24.com/casas-en-renta-en-las-aguilas-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-las-aguilas-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 01710 · Álvaro Obregón)*
+- [San Jerónimo Lídice — casas](https://www.inmuebles24.com/casas-en-renta-en-san-jeronimo-lidice-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-san-jeronimo-lidice-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 10200 · Magdalena Contreras)*
+- [Pedregal de San Ángel — casas](https://www.inmuebles24.com/casas-en-renta-en-jardines-del-pedregal-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-jardines-del-pedregal-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 01900 · Álvaro Obregón)*
+- [San Ángel — casas](https://www.inmuebles24.com/casas-en-renta-en-san-angel-ciudad-de-mexico-hasta-60000-pesos.html) · [condominios](https://www.inmuebles24.com/casa-en-condominio-en-renta-en-san-angel-ciudad-de-mexico-hasta-60000-pesos.html) *(CP 01000 · Álvaro Obregón)*
 
-- [Coyoacán](https://www.inmuebles24.com/casas-en-renta-en-coyoacan-ciudad-de-mexico.html?precio-hasta=60000)
-- [Del Valle](https://www.inmuebles24.com/casas-en-renta-en-del-valle-ciudad-de-mexico.html?precio-hasta=60000)
-- [Narvarte / Álamos](https://www.inmuebles24.com/casas-en-renta-en-narvarte-ciudad-de-mexico.html?precio-hasta=60000)
-- [Pedregal / San Jerónimo](https://www.inmuebles24.com/casas-en-renta-en-pedregal-de-san-angel-ciudad-de-mexico.html?precio-hasta=60000)
+---
 
-### 🔍 Lamudi
-*Buen filtro por colonia específica y precio*
+## 🔍 Lamudi
+*URLs verificadas por colonia · incluye filtro de jardín*
 
-- [Coyoacán hasta $60k](https://www.lamudi.com.mx/distrito-federal/coyoacan/casa/for-rent/price:0-60000/)
-- [Del Valle hasta $60k](https://www.lamudi.com.mx/distrito-federal/benito-juarez/del-valle/casa/for-rent/price:0-60000/)
-- [Álvaro Obregón (Águilas/Pedregal) $60k](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/casa/for-rent/price:0-60000/)
+- [Del Valle Sur](https://www.lamudi.com.mx/distrito-federal/benito-juarez/del-valle-sur/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/benito-juarez/del-valle-sur/casa/for-rent/price:0-60000/garden/) *(CP 03200 · Benito Juárez)*
+- [La Florida](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/la-florida/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/la-florida/casa/for-rent/price:0-60000/garden/) *(CP 01030 · Álvaro Obregón)*
+- [Del Carmen Coyoacán](https://www.lamudi.com.mx/distrito-federal/coyoacan/del-carmen/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/coyoacan/del-carmen/casa/for-rent/price:0-60000/garden/) *(CP 04100 · Coyoacán)*
+- [Romero de Terreros](https://www.lamudi.com.mx/distrito-federal/coyoacan/romero-de-terreros/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/coyoacan/romero-de-terreros/casa/for-rent/price:0-60000/garden/) *(CP 04310 · Coyoacán)*
+- [Narvarte Poniente](https://www.lamudi.com.mx/distrito-federal/benito-juarez/narvarte-poniente/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/benito-juarez/narvarte-poniente/casa/for-rent/price:0-60000/garden/) *(CP 03020 · Benito Juárez)*
+- [Pedregal de San Francisco](https://www.lamudi.com.mx/distrito-federal/coyoacan/pedregal-de-san-francisco/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/coyoacan/pedregal-de-san-francisco/casa/for-rent/price:0-60000/garden/) *(CP 04320 · Coyoacán)*
+- [Acacias](https://www.lamudi.com.mx/distrito-federal/benito-juarez/acacias-1/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/benito-juarez/acacias-1/casa/for-rent/price:0-60000/garden/) *(CP 03240 · Benito Juárez)*
+- [San Ángel Inn](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/san-angel-inn/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/san-angel-inn/casa/for-rent/price:0-60000/garden/) *(CP 01060 · Álvaro Obregón)*
+- [Las Águilas](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/las-aguilas/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/las-aguilas/casa/for-rent/price:0-60000/garden/) *(CP 01710 · Álvaro Obregón)*
+- [San Jerónimo Lídice](https://www.lamudi.com.mx/distrito-federal/la-magdalena-contreras/san-jeronimo-lidice/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/la-magdalena-contreras/san-jeronimo-lidice/casa/for-rent/price:0-60000/garden/) *(CP 10200 · Magdalena Contreras)*
+- [Pedregal de San Ángel](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/jardines-del-pedregal/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/jardines-del-pedregal/casa/for-rent/price:0-60000/garden/) *(CP 01900 · Álvaro Obregón)*
+- [San Ángel](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/san-angel/casa/for-rent/price:0-60000/) · [con jardín](https://www.lamudi.com.mx/distrito-federal/alvaro-obregon/san-angel/casa/for-rent/price:0-60000/garden/) *(CP 01000 · Álvaro Obregón)*
 
-### 📋 Vivanuncios
-*Propiedades de particulares y agencias*
+---
 
-- [Casas renta sur CDMX hasta $60k](https://www.vivanuncios.com.mx/s-casas-en-renta/ciudad-de-mexico/v1c1096l1096p1?ad_type=OFFER&re_type=residential&priceMax=60000&re_subtype=house)
-
-### 🛒 MercadoLibre Inmuebles
-*Amplio inventario, actualización frecuente*
+## 🛒 MercadoLibre Inmuebles
+*Filtrar zona manualmente al abrir*
+> ⚙️ Al abrir: en el mapa escribe cada colonia y filtra precio hasta $60,000
 
 - [Casas renta CDMX hasta $60k](https://inmuebles.mercadolibre.com.mx/casas/alquiler/distrito-federal/_PriceRange_0MXN-60000MXN)
 
-### 🏢 Century21
-*Agencia con presencia en Coyoacán y Del Valle*
+---
 
-- [Casas renta CDMX](https://www.century21mexico.com/busqueda?tipoOperacion=2&tipoPropiedad=2&estado=9&precioMax=60000)
+## 📋 Vivanuncios
+*Filtrar al abrir: Tipo → Casa · Precio máx → $60,000*
+> ⚙️ Al abrir: Tipo → Casa, Precio máx → $60,000, busca cada colonia
+
+- [Casas renta sur CDMX](https://www.vivanuncios.com.mx/s-casas-en-renta/ciudad-de-mexico/v1c1096l1096p1)
+
+---
+
+## 🏢 Century21
+*Filtrar manualmente: Renta · Casa · CDMX · hasta $60k*
+> ⚙️ Al abrir: Operación → Renta, Tipo → Casa, Estado → CDMX, Precio máx → $60,000
+
+- [Buscador Century21 México](https://www.century21mexico.com/propiedades)
+
+---
+
+## 📮 Colonias objetivo
+
+| # | Colonia | CP | Alcaldía |
+|---|---|---|---|
+| 1 | Del Valle Sur | 03200 | Benito Juárez |
+| 2 | La Florida | 01030 | Álvaro Obregón |
+| 3 | Del Carmen Coyoacán | 04100 | Coyoacán |
+| 4 | Romero de Terreros | 04310 | Coyoacán |
+| 5 | Narvarte Poniente | 03020 | Benito Juárez |
+| 6 | Pedregal de San Francisco | 04320 | Coyoacán |
+| 7 | Acacias | 03240 | Benito Juárez |
+| 8 | San Ángel Inn | 01060 | Álvaro Obregón |
+| 9 | Las Águilas | 01710 | Álvaro Obregón |
+| 10 | San Jerónimo Lídice | 10200 | Magdalena Contreras |
+| 11 | Pedregal de San Ángel | 01900 | Álvaro Obregón |
+| 12 | San Ángel | 01000 | Álvaro Obregón |
 
 ---
 
 ## 📊 Evaluar propiedades encontradas
 
-→ [**Abrir evaluador**](evaluador.html) — califica cada propiedad y obtén su rating ponderado automáticamente.
-
----
-
-## ℹ️ Criterios de evaluación
+→ [**Abrir evaluador**](evaluador.html)
 
 | Criterio | Peso |
 |---|---|
 | 🌿 Jardín | 30% |
-| 📍 Ubicación y colonia | 25% |
-| 📐 Tamaño y distribución | 20% |
-| 🔧 Estado del inmueble | 20% |
+| 📍 Ubicación | 25% |
+| 📐 Tamaño | 20% |
+| 🔧 Estado | 20% |
 | 🚗 Estacionamiento | 5% |
 
-> El precio **no forma parte del rating** — es condición de entrada (filtro duro).
+> Precio = filtro duro, no criterio de rating.
 
 ---
 
-*Generado automáticamente · 2026-05-07 20:26 UTC*
+*Generado automáticamente · 2026-05-07 20:36 UTC*
