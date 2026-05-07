@@ -6,69 +6,70 @@
 <title>Evaluador de Propiedades — Casa CDMX</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#F5F2ED;--surface:#FFFFFF;--surface2:#F0EDE8;--border:#E2DDD6;
-  --text:#1A1714;--muted:#8C867D;--accent:#2D5A3D;--accent-lt:#EAF2EC;
-  --amber:#C17D3C;--amber-lt:#FBF3E8;--red:#C0392B;--red-lt:#FBEAE8;
-  --gold:#B8952A;
-}
+:root{--bg:#F5F2ED;--surface:#FFF;--surface2:#F0EDE8;--border:#E2DDD6;--text:#1A1714;--muted:#8C867D;--accent:#2D5A3D;--accent-lt:#EAF2EC;--amber:#C17D3C;--amber-lt:#FBF3E8;--red:#C0392B;--red-lt:#FBEAE8;--gold:#B8952A;}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;min-height:100vh}
 .header{background:var(--accent);padding:1.5rem 2rem;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}
-.header-left h1{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;font-weight:400;letter-spacing:-.3px}
-.header-left p{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
+.header h1{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;font-weight:400;letter-spacing:-.3px}
+.header p{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px}
 .budget-pill{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-size:12px;padding:5px 14px;border-radius:20px;white-space:nowrap}
 .tabs{background:var(--surface);border-bottom:1px solid var(--border);display:flex;padding:0 2rem}
 .tab{padding:14px 20px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:none;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s;font-family:'DM Sans',sans-serif}
 .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
-.tab .count{background:var(--accent-lt);color:var(--accent);font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;margin-left:5px}
-.main{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+.count{background:var(--accent-lt);color:var(--accent);font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;margin-left:5px}
+.main{max-width:860px;margin:0 auto;padding:2rem 1.5rem}
 .panel{display:none}.panel.active{display:block}
-.form-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.75rem;margin-bottom:1.25rem}
-.form-card h2{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;margin-bottom:1.25rem}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1.25rem}
+.card h2{font-family:'DM Serif Display',serif;font-size:17px;font-weight:400;margin-bottom:1.25rem}
 .field{margin-bottom:1rem}
 .field label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
 .field input,.field select,.field textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px;padding:10px 14px;outline:none;font-family:'DM Sans',sans-serif;transition:border-color .15s}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);background:#fff}
-.field textarea{resize:vertical;min-height:100px}
+.field textarea{resize:vertical;min-height:110px;font-size:13px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.url-preview{display:none;align-items:center;gap:8px;margin-top:6px;padding:8px 12px;background:var(--accent-lt);border-radius:8px;font-size:12px;color:var(--accent)}
-.url-preview a{color:var(--accent);font-weight:500;word-break:break-all}
-.ai-block{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1.25rem}
-.ai-header{background:var(--surface2);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
-.ai-header-left{display:flex;align-items:center;gap:8px}
-.ai-label{font-size:12px;font-weight:600;color:var(--accent)}
-.ai-hint{font-size:11px;color:var(--muted);margin-top:1px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px}
+.url-chip{display:none;align-items:center;gap:8px;margin-top:6px;padding:7px 12px;background:var(--accent-lt);border-radius:8px;font-size:12px}
+.url-chip a{color:var(--accent);font-weight:500;word-break:break-all;text-decoration:none}
+.url-chip a:hover{text-decoration:underline}
+.toggle-row{display:flex;gap:8px;margin-top:2px}
+.toggle-btn{flex:1;padding:9px;border:1px solid var(--border);border-radius:8px;background:var(--surface2);color:var(--muted);font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;text-align:center}
+.toggle-btn.active-yes{background:#EAF2EC;border-color:var(--accent);color:var(--accent)}
+.toggle-btn.active-no{background:var(--red-lt);border-color:var(--red);color:var(--red)}
+.ai-block{border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:1.25rem}
+.ai-head{background:var(--surface2);padding:12px 16px;display:flex;align-items:center;gap:10px}
+.ai-head-text .ai-title{font-size:13px;font-weight:600;color:var(--accent)}
+.ai-head-text .ai-sub{font-size:11px;color:var(--muted);margin-top:1px}
 .ai-body{padding:16px}
-.api-key-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:12px}
-.api-key-row .field{flex:1;margin-bottom:0}
-.api-key-row input{font-size:12px;font-family:monospace}
-.desc-field textarea{min-height:80px;font-size:13px}
-.btn-analyze{display:inline-flex;align-items:center;gap:6px;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;background:var(--accent);color:#fff;transition:opacity .15s}
+.apikey-row{display:flex;gap:8px;align-items:flex-end;margin-bottom:12px}
+.apikey-row .field{flex:1;margin-bottom:0}
+.apikey-row input{font-family:monospace;font-size:12px}
+.apikey-row a{font-size:11px;color:var(--accent);white-space:nowrap;padding-bottom:12px;text-decoration:none}
+.apikey-row a:hover{text-decoration:underline}
+.btn-analyze{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;background:var(--accent);color:#fff;font-family:'DM Sans',sans-serif;transition:opacity .15s}
 .btn-analyze:hover{opacity:.9}
-.btn-analyze:disabled{opacity:.5;cursor:not-allowed}
+.btn-analyze:disabled{opacity:.45;cursor:not-allowed}
 .analyzing{display:none;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-top:10px}
-.spinner{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+.spinner{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;flex-shrink:0}
 @keyframes spin{to{transform:rotate(360deg)}}
-.ai-result{display:none;margin-top:12px;padding:12px;background:var(--accent-lt);border-radius:8px}
-.ai-result-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:8px}
-.ai-justifs{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.ai-justif{font-size:11px;color:var(--text);padding:6px 8px;background:rgba(255,255,255,.6);border-radius:6px}
-.ai-justif strong{color:var(--accent);display:block;margin-bottom:2px}
-.ai-summary{font-size:12px;color:var(--text);margin-top:8px;padding-top:8px;border-top:1px solid rgba(45,90,61,.15);font-style:italic}
-.ai-error{display:none;margin-top:10px;padding:10px 12px;background:var(--red-lt);border:1px solid #EDBBBA;border-radius:8px;font-size:12px;color:var(--red)}
-.criteria-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.criterion-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;transition:border-color .15s}
-.criterion-card:hover{border-color:var(--accent)}
-.criterion-card.ai-suggested{border-color:var(--accent);background:#EAF2EC}
-.crit-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ai-result{display:none;margin-top:14px;padding:14px;background:var(--accent-lt);border-radius:10px}
+.ai-result-title{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--accent);margin-bottom:10px}
+.ai-justifs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.ai-j{font-size:11px;padding:8px 10px;background:rgba(255,255,255,.7);border-radius:8px}
+.ai-j strong{color:var(--accent);display:block;margin-bottom:3px;font-size:12px}
+.ai-summary{font-size:12px;color:var(--text);border-top:1px solid rgba(45,90,61,.15);padding-top:10px;font-style:italic}
+.ai-error{display:none;margin-top:10px;padding:10px 14px;background:var(--red-lt);border:1px solid #EDBBBA;border-radius:8px;font-size:12px;color:var(--red)}
+.crit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.crit-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:13px 15px;transition:border-color .15s}
+.crit-card:hover{border-color:var(--accent)}
+.crit-card.ai-on{border-color:var(--accent);background:#EAF2EC}
+.crit-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
 .crit-name{font-size:13px;font-weight:500}
 .crit-peso{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px;background:var(--accent-lt);color:var(--accent)}
-.stars{display:flex;gap:4px;margin-bottom:4px}
+.stars{display:flex;gap:4px;margin-bottom:3px}
 .star{font-size:20px;cursor:pointer;color:#DDD8D0;transition:color .1s;user-select:none;line-height:1}
 .star.on{color:var(--gold)}
-.star-label{font-size:11px;color:var(--muted)}
+.star-lbl{font-size:11px;color:var(--muted)}
 .ai-badge{font-size:10px;background:var(--accent);color:#fff;padding:1px 6px;border-radius:8px;margin-left:5px}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:1.25rem}
 .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;font-family:'DM Sans',sans-serif;transition:opacity .15s,transform .1s}
@@ -77,65 +78,65 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 .btn-primary:hover{opacity:.9}
 .btn-ghost{background:var(--surface);color:var(--muted);border:1px solid var(--border)}
 .btn-ghost:hover{color:var(--text);border-color:var(--text)}
-.warning{display:none;align-items:center;gap:8px;padding:10px 14px;background:var(--amber-lt);border:1px solid #E8C99A;border-radius:8px;font-size:12px;color:var(--amber);margin-top:.75rem}
-.ranking-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
-.ranking-header h2{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400}
-.sort-select{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:12px;color:var(--text);font-family:'DM Sans',sans-serif;cursor:pointer}
-.prop-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:.875rem;transition:box-shadow .2s;position:relative}
+.list-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
+.list-header h2{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400}
+.sort-sel{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:7px 12px;font-size:12px;color:var(--text);font-family:'DM Sans',sans-serif;cursor:pointer}
+.prop-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:.875rem;position:relative;transition:box-shadow .2s}
 .prop-card:hover{box-shadow:0 4px 20px rgba(0,0,0,.06)}
-.prop-card.top{border-color:var(--gold);border-width:2px}
-.rank-badge{position:absolute;top:-12px;left:1.5rem;font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.05em;text-transform:uppercase}
-.rank-1{background:var(--gold);color:#fff}
-.rank-2{background:var(--muted);color:#fff}
-.rank-3{background:#B87333;color:#fff}
-.prop-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:1rem}
-.prop-info{flex:1;min-width:0}
-.prop-nombre{font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;margin-bottom:4px}
-.prop-meta{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.meta-chip{background:var(--surface2);padding:2px 8px;border-radius:10px;font-size:11px}
-.meta-chip.over{background:var(--red-lt);color:var(--red)}
-.prop-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--accent);margin-top:6px;text-decoration:none;font-weight:500}
-.prop-link:hover{text-decoration:underline}
-.score-block{text-align:right;flex-shrink:0}
-.score-num{font-family:'DM Serif Display',serif;font-size:40px;line-height:1;font-weight:400}
-.score-denom{font-size:12px;color:var(--muted)}
-.verdict{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:5px;text-transform:uppercase;letter-spacing:.04em}
-.bar-wrap{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;margin-bottom:1rem}
-.bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
-.criteria-breakdown{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:1rem}
-.cb-item{text-align:center}
-.cb-emoji{font-size:16px;margin-bottom:2px}
-.cb-stars{font-size:10px;color:var(--gold);letter-spacing:-1px}
-.cb-label{font-size:10px;color:var(--muted);margin-top:1px}
-.cb-peso{font-size:10px;color:var(--accent);font-weight:500}
-.prop-notes{font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:.75rem;margin-top:.75rem;font-style:italic}
-.prop-actions{display:flex;gap:8px;margin-top:.875rem;flex-wrap:wrap}
+.prop-card.top1{border-color:var(--gold);border-width:2px}
+.rank-tag{position:absolute;top:-11px;left:1.5rem;font-size:10px;font-weight:600;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+.r1{background:var(--gold);color:#fff}
+.r2{background:var(--muted);color:#fff}
+.r3{background:#B87333;color:#fff}
+.p-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;margin-bottom:.875rem}
+.p-info{flex:1;min-width:0}
+.p-nombre{font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;margin-bottom:4px}
+.p-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+.chip{background:var(--surface2);padding:2px 9px;border-radius:10px;font-size:11px}
+.chip.red{background:var(--red-lt);color:var(--red)}
+.chip.green{background:var(--accent-lt);color:var(--accent)}
+.p-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--accent);margin-top:5px;text-decoration:none;font-weight:500}
+.p-link:hover{text-decoration:underline}
+.score-box{text-align:right;flex-shrink:0}
+.score-n{font-family:'DM Serif Display',serif;font-size:40px;line-height:1;font-weight:400}
+.score-d{font-size:12px;color:var(--muted)}
+.verdict{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:4px;text-transform:uppercase;letter-spacing:.04em}
+.bar-bg{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;margin-bottom:.875rem}
+.bar-fill{height:100%;border-radius:3px;transition:width .5s}
+.breakdown{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:.875rem}
+.bd{text-align:center}
+.bd-emoji{font-size:15px;margin-bottom:2px}
+.bd-stars{font-size:9px;color:var(--gold);letter-spacing:-1px}
+.bd-label{font-size:10px;color:var(--muted);margin-top:1px}
+.bd-peso{font-size:10px;color:var(--accent);font-weight:500}
+.p-facts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.875rem}
+.p-notes{font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:.75rem;font-style:italic}
+.p-actions{display:flex;gap:8px;margin-top:.875rem}
 .btn-sm{font-size:11px;padding:5px 12px;border-radius:6px;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--muted);font-family:'DM Sans',sans-serif;transition:all .15s}
 .btn-sm:hover{color:var(--text);border-color:var(--text)}
-.btn-sm.danger:hover{color:var(--red);border-color:var(--red)}
+.btn-sm.del:hover{color:var(--red);border-color:var(--red)}
 .empty{text-align:center;padding:4rem 2rem;color:var(--muted)}
-.empty-icon{font-size:40px;margin-bottom:1rem;opacity:.4}
+.empty-icon{font-size:40px;opacity:.35;margin-bottom:1rem}
 .empty h3{font-family:'DM Serif Display',serif;font-size:20px;font-weight:400;color:var(--text);margin-bottom:.5rem}
-.empty p{font-size:13px}
-.criteria-table{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
-.ct-row{display:grid;grid-template-columns:2.5rem 1fr 70px 60px;align-items:center;gap:12px;padding:14px 1.5rem;border-bottom:1px solid var(--border)}
+.crit-table{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.ct-row{display:grid;grid-template-columns:2.5rem 1fr 60px 60px;align-items:center;gap:12px;padding:13px 1.5rem;border-bottom:1px solid var(--border)}
 .ct-row:last-child{border-bottom:none}
-.ct-row.header{background:var(--surface2);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
-.ct-emoji{font-size:18px;text-align:center}
-.ct-name{font-size:14px;font-weight:500}
-.ct-sub{font-size:11px;color:var(--muted);margin-top:1px}
-.ct-peso{font-size:14px;font-weight:600;color:var(--accent);text-align:center}
-.ct-bar-wrap{height:4px;background:var(--surface2);border-radius:2px;overflow:hidden}
-.ct-bar{height:100%;border-radius:2px;background:var(--accent)}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(26,23,20,.5);z-index:100;align-items:center;justify-content:center;padding:1rem}
-.modal-overlay.open{display:flex}
-.modal{background:var(--surface);border-radius:16px;padding:1.75rem;width:100%;max-width:560px;max-height:90vh;overflow-y:auto}
+.ct-row.hdr{background:var(--surface2);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ct-e{font-size:18px;text-align:center}
+.ct-n{font-size:14px;font-weight:500}
+.ct-s{font-size:11px;color:var(--muted);margin-top:1px}
+.ct-p{font-size:14px;font-weight:600;color:var(--accent);text-align:center}
+.ct-bw{height:4px;background:var(--surface2);border-radius:2px;overflow:hidden}
+.ct-bf{height:100%;border-radius:2px;background:var(--accent)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(26,23,20,.5);z-index:100;align-items:center;justify-content:center;padding:1rem}
+.overlay.open{display:flex}
+.modal{background:var(--surface);border-radius:16px;padding:1.75rem;width:100%;max-width:540px;max-height:90vh;overflow-y:auto}
 .modal h2{font-family:'DM Serif Display',serif;font-size:18px;font-weight:400;margin-bottom:1.25rem}
-.modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem}
+.modal-foot{display:flex;gap:8px;justify-content:flex-end;margin-top:1.25rem}
 @media(max-width:600px){
-  .criteria-grid,.ai-justifs{grid-template-columns:1fr}
-  .grid2,.grid3{grid-template-columns:1fr}
-  .criteria-breakdown{grid-template-columns:repeat(5,1fr);gap:4px}
+  .crit-grid,.ai-justifs{grid-template-columns:1fr}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr 1fr}
+  .breakdown{grid-template-columns:repeat(5,1fr);gap:3px}
   .header{padding:1.25rem 1rem;flex-direction:column;align-items:flex-start;gap:8px}
   .tabs{padding:0 1rem}
   .main{padding:1.25rem 1rem}
@@ -144,29 +145,29 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
 </head>
 <body>
 <div class="header">
-  <div class="header-left">
+  <div>
     <h1>Evaluador de Propiedades</h1>
-    <p>Sur-poniente CDMX · 5 criterios ponderados · septiembre 2026</p>
+    <p>Sur-poniente CDMX · 5 criterios · septiembre 2026</p>
   </div>
   <span class="budget-pill">≤ $60,000 MXN/mes</span>
 </div>
 <div class="tabs">
   <button class="tab active" onclick="switchTab('nueva')">Nueva propiedad</button>
-  <button class="tab" onclick="switchTab('lista')">Propiedades guardadas <span class="count" id="count-badge">0</span></button>
+  <button class="tab" onclick="switchTab('lista')">Propiedades guardadas <span class="count" id="cnt">0</span></button>
   <button class="tab" onclick="switchTab('criterios')">Criterios</button>
 </div>
 <div class="main">
   <div id="panel-nueva" class="panel active">
-    <div class="form-card">
+    <div class="card">
       <h2>Datos de la propiedad</h2>
       <div class="field">
-        <label>URL del anuncio</label>
-        <input type="url" id="f-url" placeholder="Pega aquí el enlace de Inmuebles24, Lamudi, MercadoLibre…" oninput="previewUrl()">
-        <div class="url-preview" id="url-preview"><span>🔗</span><a id="url-link" href="#" target="_blank" rel="noopener"></a></div>
+        <label>URL del anuncio (referencia)</label>
+        <input type="url" id="f-url" placeholder="https://www.inmuebles24.com/…" oninput="previewUrl()">
+        <div class="url-chip" id="url-chip">🔗 <a id="url-lnk" href="#" target="_blank" rel="noopener"></a></div>
       </div>
       <div class="field">
         <label>Nombre o referencia</label>
-        <input type="text" id="f-nombre" placeholder="Ej. Casa Del Valle Sur, calle Amores">
+        <input type="text" id="f-nombre" placeholder="Ej. Casa Del Carmen, Calle Madrid 45">
       </div>
       <div class="grid3">
         <div class="field">
@@ -184,150 +185,159 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;fon
         </div>
         <div class="field">
           <label>Renta mensual (MXN)</label>
-          <input type="number" id="f-renta" placeholder="55000" oninput="checkRenta()">
+          <input type="number" id="f-renta" placeholder="55000">
         </div>
         <div class="field">
-          <label>Mantenimiento incluido</label>
+          <label>¿Incluye mantenimiento?</label>
           <select id="f-mant">
-            <option value="si">Sí, ya incluido</option>
-            <option value="no">No, es aparte</option>
+            <option value="si">Sí</option>
+            <option value="no">No</option>
             <option value="nd">No sé</option>
           </select>
         </div>
       </div>
-      <div class="grid2">
-        <div class="field"><label>m² construcción (aprox.)</label><input type="number" id="f-m2" placeholder="180"></div>
+      <div class="grid4">
         <div class="field"><label>Recámaras</label><input type="number" id="f-rec" placeholder="3" min="1" max="10"></div>
+        <div class="field"><label>Baños</label><input type="number" id="f-ban" placeholder="2" min="1" max="10"></div>
+        <div class="field"><label>Estacionamientos</label><input type="number" id="f-est" placeholder="2" min="0" max="10"></div>
+        <div class="field"><label>Año / remodelación</label><input type="number" id="f-anio" placeholder="2010" min="1900" max="2025"></div>
       </div>
       <div class="field">
-        <label>Notas libres</label>
-        <textarea id="f-notas" placeholder="Observaciones, puntos a verificar, pros y contras…" style="min-height:70px"></textarea>
+        <label>¿Tiene jardín?</label>
+        <div class="toggle-row">
+          <button class="toggle-btn" id="jardin-si" onclick="setJardin('si')">🌿 Sí</button>
+          <button class="toggle-btn" id="jardin-no" onclick="setJardin('no')">✗ No</button>
+        </div>
       </div>
-      <div class="warning" id="renta-warning">⚠️ La renta supera el presupuesto de $60,000 MXN. Esta propiedad no pasa el filtro duro.</div>
     </div>
     <div class="ai-block">
-      <div class="ai-header">
-        <div class="ai-header-left">
-          <span style="font-size:18px">✨</span>
-          <div>
-            <div class="ai-label">Análisis automático con Claude</div>
-            <div class="ai-hint">Pega la descripción del anuncio y Claude sugerirá una calificación para cada criterio</div>
-          </div>
+      <div class="ai-head">
+        <span style="font-size:20px">✨</span>
+        <div class="ai-head-text">
+          <div class="ai-title">Análisis automático con Claude</div>
+          <div class="ai-sub">Pega la descripción del anuncio — Claude sugiere la calificación de los 5 criterios</div>
         </div>
       </div>
       <div class="ai-body">
-        <div class="api-key-row">
-          <div class="field"><label>API Key de Anthropic</label><input type="password" id="api-key" placeholder="sk-ant-…" oninput="saveApiKey()"></div>
-          <a href="https://console.anthropic.com/settings/keys" target="_blank" style="font-size:11px;color:var(--accent);white-space:nowrap;padding-bottom:12px">Obtener key →</a>
+        <div class="apikey-row">
+          <div class="field"><label>API Key de Anthropic</label><input type="password" id="api-key" placeholder="sk-ant-…" oninput="saveKey()"></div>
+          <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Obtener key →</a>
         </div>
-        <div class="field desc-field">
+        <div class="field">
           <label>Descripción del anuncio</label>
-          <textarea id="f-desc" placeholder="Copia y pega aquí el texto completo del anuncio — descripción, características, precio, colonia, m², recámaras, jardín, estacionamiento, estado…"></textarea>
+          <textarea id="f-desc" placeholder="Pega aquí el texto completo del anuncio: descripción, características, jardín, estado, estacionamiento, colonia…"></textarea>
         </div>
-        <button class="btn-analyze" onclick="analizarConClaude()" id="btn-analyze"><span>✨</span> Analizar y sugerir calificación</button>
-        <div class="analyzing" id="analyzing"><div class="spinner"></div><span>Claude está analizando la propiedad…</span></div>
-        <div class="ai-error" id="ai-error"></div>
-        <div class="ai-result" id="ai-result">
+        <button class="btn-analyze" id="btn-an" onclick="analizar()">✨ Analizar y sugerir calificación</button>
+        <div class="analyzing" id="loading"><div class="spinner"></div><span>Claude está analizando…</span></div>
+        <div class="ai-error" id="ai-err"></div>
+        <div class="ai-result" id="ai-res">
           <div class="ai-result-title">✨ Sugerencia de Claude — ajusta las estrellas si no estás de acuerdo</div>
-          <div class="ai-justifs" id="ai-justifs"></div>
-          <div class="ai-summary" id="ai-summary"></div>
+          <div class="ai-justifs" id="ai-just"></div>
+          <div class="ai-summary" id="ai-sum"></div>
         </div>
       </div>
     </div>
-    <div class="form-card">
+    <div class="card">
       <h2>Calificación por criterio <span style="font-size:12px;color:var(--muted);font-weight:400;font-family:'DM Sans',sans-serif">— ajustable antes de guardar</span></h2>
-      <div class="criteria-grid" id="star-form"></div>
+      <div class="crit-grid" id="star-form"></div>
+    </div>
+    <div class="field">
+      <label>Notas libres</label>
+      <textarea id="f-notas" placeholder="Observaciones, puntos a verificar, pros y contras…" style="min-height:70px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 14px;width:100%;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;resize:vertical"></textarea>
     </div>
     <div class="btn-row">
       <button class="btn btn-primary" onclick="guardar()">Guardar propiedad</button>
-      <button class="btn btn-ghost" onclick="limpiar()">Limpiar formulario</button>
+      <button class="btn btn-ghost" onclick="limpiar()">Limpiar</button>
     </div>
   </div>
   <div id="panel-lista" class="panel">
-    <div class="ranking-header">
+    <div class="list-header">
       <h2>Propiedades guardadas</h2>
-      <select class="sort-select" onchange="renderLista(this.value)">
-        <option value="rating">Ordenar: por rating</option>
-        <option value="precio">Ordenar: por precio</option>
-        <option value="fecha">Ordenar: más recientes</option>
+      <select class="sort-sel" onchange="renderLista(this.value)">
+        <option value="rating">Por rating</option>
+        <option value="precio">Por precio</option>
+        <option value="fecha">Más recientes</option>
       </select>
     </div>
-    <div id="lista-container"></div>
+    <div id="lista"></div>
   </div>
   <div id="panel-criterios" class="panel">
-    <div class="criteria-table">
-      <div class="ct-row header"><div></div><div>Criterio</div><div style="text-align:center">Peso</div><div>Distribución</div></div>
-      <div id="criterios-display"></div>
+    <div class="crit-table">
+      <div class="ct-row hdr"><div></div><div>Criterio</div><div style="text-align:center">Peso</div><div>Dist.</div></div>
+      <div id="crit-display"></div>
     </div>
-    <p style="font-size:12px;color:var(--muted);margin-top:1rem;padding:0 .25rem">El precio no forma parte del rating — es condición de entrada (filtro duro ≤ $60,000 MXN/mes con mantenimiento incluido).</p>
+    <p style="font-size:12px;color:var(--muted);margin-top:1rem">El precio es filtro duro (≤ $60,000 MXN/mes con mantenimiento), no criterio de rating.</p>
   </div>
 </div>
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+<div class="overlay" id="overlay" onclick="closeModal(event)">
   <div class="modal">
     <h2>Editar propiedad</h2>
-    <div id="modal-fields"></div>
-    <div class="modal-actions">
+    <div id="modal-body"></div>
+    <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeModalDirect()">Cancelar</button>
       <button class="btn btn-primary" onclick="saveEdit()">Guardar cambios</button>
     </div>
   </div>
 </div>
 <script>
-const CRITERIOS=[{id:'jardin',nombre:'Jardín',emoji:'🌿',sub:'Tamaño, estado y privacidad del jardín',peso:30},{id:'ubicacion',nombre:'Ubicación',emoji:'📍',sub:'Perfil, seguridad, ambiente de la colonia',peso:25},{id:'tamanio',nombre:'Tamaño y distribución',emoji:'📐',sub:'m², recámaras, funcionalidad',peso:20},{id:'estado',nombre:'Estado del inmueble',emoji:'🔧',sub:'Antigüedad, remodelaciones, instalaciones',peso:20},{id:'estacion',nombre:'Estacionamiento',emoji:'🚗',sub:'Cajones cubiertos y seguros',peso:5}];
-const LABELS=['','Muy malo','Malo','Regular','Bueno','Excelente'];
-let scores={};let props=JSON.parse(localStorage.getItem('casas_cdmx_v2')||'[]');let editId=null;let editScores={};
-CRITERIOS.forEach(c=>scores[c.id]=3);
-function save(){localStorage.setItem('casas_cdmx_v2',JSON.stringify(props));updateCount();}
-function updateCount(){document.getElementById('count-badge').textContent=props.length;}
-function calcRating(s){return Math.round(CRITERIOS.reduce((a,c)=>a+(s[c.id]/5)*c.peso,0));}
-function verdictCfg(r){if(r>=80)return{color:'#1A6B5A',bg:'#E8F4F1',txt:'Excelente'};if(r>=65)return{color:'#2D5A3D',bg:'#EAF2EC',txt:'Buena opción'};if(r>=50)return{color:'#C17D3C',bg:'#FBF3E8',txt:'Aceptable'};return{color:'#C0392B',bg:'#FBEAE8',txt:'Por debajo'};}
-function saveApiKey(){localStorage.setItem('cdmx_apikey',document.getElementById('api-key').value);}
-function loadApiKey(){const k=localStorage.getItem('cdmx_apikey');if(k)document.getElementById('api-key').value=k;}
-function previewUrl(){const val=document.getElementById('f-url').value.trim();const prev=document.getElementById('url-preview');const lnk=document.getElementById('url-link');if(val&&val.startsWith('http')){try{const u=new URL(val);lnk.href=val;lnk.textContent=u.hostname+(u.pathname.length>40?u.pathname.slice(0,40)+'…':u.pathname);prev.style.display='flex';}catch{prev.style.display='none';}}else{prev.style.display='none';}}
-function checkRenta(){const v=parseInt(document.getElementById('f-renta').value)||0;document.getElementById('renta-warning').style.display=v>60000?'flex':'none';}
-async function analizarConClaude(){
-  const apiKey=document.getElementById('api-key').value.trim();
+const CR=[{id:'jardin',n:'Jardín',e:'🌿',s:'Tamaño, estado y privacidad',p:30},{id:'ubicacion',n:'Ubicación',e:'📍',s:'Perfil, seguridad, ambiente',p:25},{id:'tamanio',n:'Tamaño y distribución',e:'📐',s:'Recámaras, baños, funcionalidad',p:20},{id:'estado',n:'Estado del inmueble',e:'🔧',s:'Año, remodelaciones, instalaciones',p:20},{id:'estacion',n:'Estacionamiento',e:'🚗',s:'Cajones cubiertos y seguros',p:5}];
+const LBL=['','Muy malo','Malo','Regular','Bueno','Excelente'];
+let sc={};let props=JSON.parse(localStorage.getItem('casas_v3')||'[]');
+let editId=null;let editSc={};let jardinVal='';
+CR.forEach(c=>sc[c.id]=3);
+const save=()=>{localStorage.setItem('casas_v3',JSON.stringify(props));document.getElementById('cnt').textContent=props.length;};
+const rating=s=>Math.round(CR.reduce((a,c)=>a+(s[c.id]/5)*c.p,0));
+const verd=r=>r>=80?{c:'#1A6B5A',bg:'#E8F4F1',t:'Excelente'}:r>=65?{c:'#2D5A3D',bg:'#EAF2EC',t:'Buena opción'}:r>=50?{c:'#C17D3C',bg:'#FBF3E8',t:'Aceptable'}:{c:'#C0392B',bg:'#FBEAE8',t:'Por debajo'};
+function saveKey(){localStorage.setItem('ak',document.getElementById('api-key').value);}
+function loadKey(){const k=localStorage.getItem('ak');if(k)document.getElementById('api-key').value=k;}
+function setJardin(v){jardinVal=v;document.getElementById('jardin-si').className='toggle-btn'+(v==='si'?' active-yes':'');document.getElementById('jardin-no').className='toggle-btn'+(v==='no'?' active-no':'');}
+function previewUrl(){const val=document.getElementById('f-url').value.trim();const chip=document.getElementById('url-chip');const lnk=document.getElementById('url-lnk');if(val&&val.startsWith('http')){try{const u=new URL(val);lnk.href=val;lnk.textContent=u.hostname+(u.pathname.length>45?u.pathname.slice(0,45)+'…':u.pathname);chip.style.display='flex';}catch{chip.style.display='none';}}else chip.style.display='none';}
+async function analizar(){
+  const key=document.getElementById('api-key').value.trim();
   const desc=document.getElementById('f-desc').value.trim();
-  const url=document.getElementById('f-url').value.trim();
+  if(!key){showErr('Ingresa tu API key de Anthropic.');return;}
+  if(!desc){showErr('Pega la descripción del anuncio primero.');return;}
   const colonia=document.getElementById('f-colonia').value;
-  if(!apiKey){showError('Ingresa tu API key de Anthropic para usar el análisis automático.');return;}
-  if(!desc){showError('Pega la descripción del anuncio para que Claude pueda analizarla.');return;}
-  document.getElementById('btn-analyze').disabled=true;
-  document.getElementById('analyzing').style.display='flex';
-  document.getElementById('ai-result').style.display='none';
-  document.getElementById('ai-error').style.display='none';
-  const prompt=`Eres un experto en bienes raíces en Ciudad de México. Analiza el siguiente anuncio de una propiedad en renta y evalúa cada uno de estos 5 criterios con una calificación del 1 al 5.\n\nCRITERIOS:\n1. jardin — Jardín: tamaño, estado, privacidad. (peso 30%)\n2. ubicacion — Ubicación y colonia: perfil, seguridad, ambiente, plusvalía. (peso 25%)\n3. tamanio — Tamaño y distribución: m², recámaras, funcionalidad. (peso 20%)\n4. estado — Estado del inmueble: antigüedad, remodelaciones, instalaciones. (peso 20%)\n5. estacion — Estacionamiento: cajones cubiertos y seguros. (peso 5%)\n\nEscala: 1=Muy malo, 2=Malo, 3=Regular, 4=Bueno, 5=Excelente.\n\nContexto: familia con hijos pequeños, busca casa en sur-poniente CDMX${colonia?` (colonia: ${colonia})`:''}. Presupuesto máximo $60,000 MXN/mes. Prioridad: jardín y ubicación.\n\nANUNCIO:\n${url?`URL: ${url}\n`:''}${desc}\n\nResponde SOLO con JSON válido, sin markdown:\n{"jardin":{"score":1-5,"justificacion":"max 20 palabras"},"ubicacion":{"score":1-5,"justificacion":"max 20 palabras"},"tamanio":{"score":1-5,"justificacion":"max 20 palabras"},"estado":{"score":1-5,"justificacion":"max 20 palabras"},"estacion":{"score":1-5,"justificacion":"max 20 palabras"},"resumen":"max 25 palabras"}`;
+  const rec=document.getElementById('f-rec').value;
+  const ban=document.getElementById('f-ban').value;
+  const est=document.getElementById('f-est').value;
+  const anio=document.getElementById('f-anio').value;
+  document.getElementById('btn-an').disabled=true;
+  document.getElementById('loading').style.display='flex';
+  document.getElementById('ai-res').style.display='none';
+  document.getElementById('ai-err').style.display='none';
+  const ctx=`Datos ingresados manualmente:\n- Colonia: ${colonia||'no especificada'}\n- Jardín: ${jardinVal==='si'?'Sí tiene':jardinVal==='no'?'No tiene':'No especificado'}\n- Recámaras: ${rec||'no especificado'}\n- Baños: ${ban||'no especificado'}\n- Estacionamientos: ${est||'no especificado'}\n- Año construcción/remodelación: ${anio||'no especificado'}`;
+  const prompt=`Eres experto en bienes raíces residenciales en Ciudad de México. Analiza la siguiente propiedad en renta y califica estos 5 criterios del 1 al 5.\n\nCRITERIOS:\n1. jardin — Jardín: tamaño, estado, privacidad (peso 30%)\n2. ubicacion — Ubicación: perfil de colonia, seguridad, ambiente, plusvalía (peso 25%)\n3. tamanio — Tamaño y distribución: recámaras, baños, m², funcionalidad (peso 20%)\n4. estado — Estado del inmueble: año, remodelaciones, instalaciones, conservación (peso 20%)\n5. estacion — Estacionamiento: número de cajones, techados, seguros (peso 5%)\n\nEscala: 1=Muy malo 2=Malo 3=Regular 4=Bueno 5=Excelente\n\nContexto: familia con hijos pequeños buscando casa en sur-poniente CDMX. Presupuesto $60,000 MXN/mes. Jardín y ubicación son prioridades.\n\n${ctx}\n\nDESCRIPCIÓN:\n${desc}\n\nResponde ÚNICAMENTE con JSON válido sin markdown:\n{"jardin":{"score":1-5,"just":"máx 18 palabras"},"ubicacion":{"score":1-5,"just":"máx 18 palabras"},"tamanio":{"score":1-5,"just":"máx 18 palabras"},"estado":{"score":1-5,"just":"máx 18 palabras"},"estacion":{"score":1-5,"just":"máx 18 palabras"},"resumen":"máx 22 palabras"}`;
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:prompt}]})});
-    if(!res.ok){const err=await res.json().catch(()=>({}));throw new Error(err.error?.message||`Error ${res.status}`);}
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:prompt}]})});
+    if(!res.ok){const e=await res.json().catch(()=>({}));throw new Error(e.error?.message||`Error ${res.status}`);}
     const data=await res.json();
-    const text=data.content?.find(b=>b.type==='text')?.text||'';
-    const clean=text.replace(/```json|```/g,'').trim();
-    const result=JSON.parse(clean);
-    CRITERIOS.forEach(c=>{if(result[c.id]?.score)scores[c.id]=result[c.id].score;});
-    renderStarForm(true);
-    document.getElementById('ai-justifs').innerHTML=CRITERIOS.map(c=>{const r=result[c.id];if(!r)return'';return`<div class="ai-justif"><strong>${c.emoji} ${c.nombre} — ${LABELS[r.score]}</strong>${r.justificacion}</div>`;}).join('');
-    if(result.resumen)document.getElementById('ai-summary').textContent='💡 '+result.resumen;
-    document.getElementById('ai-result').style.display='block';
-  }catch(err){showError('Error al conectar con Claude: '+err.message);}
-  finally{document.getElementById('btn-analyze').disabled=false;document.getElementById('analyzing').style.display='none';}
+    const txt=data.content?.find(b=>b.type==='text')?.text||'';
+    const result=JSON.parse(txt.replace(/```json|```/g,'').trim());
+    CR.forEach(c=>{if(result[c.id]?.score)sc[c.id]=result[c.id].score;});
+    renderStars(true);
+    document.getElementById('ai-just').innerHTML=CR.map(c=>{const r=result[c.id];return r?`<div class="ai-j"><strong>${c.e} ${c.n} — ${LBL[r.score]}</strong>${r.just}</div>`:''}).join('');
+    if(result.resumen)document.getElementById('ai-sum').textContent='💡 '+result.resumen;
+    document.getElementById('ai-res').style.display='block';
+  }catch(e){showErr('Error: '+e.message);}
+  finally{document.getElementById('btn-an').disabled=false;document.getElementById('loading').style.display='none';}
 }
-function showError(msg){const el=document.getElementById('ai-error');el.textContent=msg;el.style.display='block';document.getElementById('btn-analyze').disabled=false;document.getElementById('analyzing').style.display='none';}
-function renderStarForm(aiSuggested){const el=document.getElementById('star-form');el.innerHTML=CRITERIOS.map(c=>{const v=scores[c.id]||3;const stars=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="setStar('${c.id}',${n})">★</span>`).join('');return`<div class="criterion-card${aiSuggested?' ai-suggested':''}"><div class="crit-header"><span class="crit-name">${c.emoji} ${c.nombre}${aiSuggested?'<span class="ai-badge">IA</span>':''}</span><span class="crit-peso">${c.peso}%</span></div><div class="stars" id="stars-${c.id}">${stars}</div><div class="star-label" id="lbl-${c.id}">${LABELS[v]}</div></div>`;}).join('');}
-function setStar(id,v){scores[id]=v;document.getElementById('stars-'+id).innerHTML=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="setStar('${id}',${n})">★</span>`).join('');document.getElementById('lbl-'+id).textContent=LABELS[v];}
-function guardar(){const nombre=document.getElementById('f-nombre').value.trim();if(!nombre){alert('Por favor ingresa un nombre para la propiedad.');return;}const renta=parseInt(document.getElementById('f-renta').value)||0;if(renta>60000){if(!confirm('La renta supera $60,000 MXN. ¿Guardar de todos modos?'))return;}props.push({id:Date.now(),nombre,url:document.getElementById('f-url').value.trim(),colonia:document.getElementById('f-colonia').value,renta,mant:document.getElementById('f-mant').value,m2:document.getElementById('f-m2').value,rec:document.getElementById('f-rec').value,notas:document.getElementById('f-notas').value.trim(),scores:{...scores},rating:calcRating(scores),fecha:new Date().toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'})});save();limpiar();switchTab('lista');}
-function limpiar(){['f-url','f-nombre','f-renta','f-m2','f-rec','f-notas','f-desc'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});document.getElementById('f-colonia').value='';document.getElementById('f-mant').value='si';document.getElementById('url-preview').style.display='none';document.getElementById('renta-warning').style.display='none';document.getElementById('ai-result').style.display='none';document.getElementById('ai-error').style.display='none';CRITERIOS.forEach(c=>scores[c.id]=3);renderStarForm(false);}
-function deleteProp(id){if(!confirm('¿Eliminar esta propiedad?'))return;props=props.filter(p=>p.id!==id);save();renderLista();}
-function openEdit(id){const p=props.find(x=>x.id===id);if(!p)return;editId=id;editScores={...p.scores};const colonias=['Del Valle Sur','La Florida','Del Carmen Coyoacán','Romero de Terreros','Narvarte Poniente','Pedregal de San Francisco','Acacias','San Ángel Inn','Las Águilas','San Jerónimo Lídice','Pedregal de San Ángel','San Ángel','Otra'];document.getElementById('modal-fields').innerHTML=`<div class="field"><label>Nombre</label><input type="text" id="e-nombre" value="${p.nombre}"></div><div class="field"><label>URL del anuncio</label><input type="url" id="e-url" value="${p.url||''}"></div><div class="grid2"><div class="field"><label>Colonia</label><select id="e-colonia"><option value="">Seleccionar…</option>${colonias.map(c=>`<option${c===p.colonia?' selected':''}>${c}</option>`).join('')}</select></div><div class="field"><label>Renta mensual (MXN)</label><input type="number" id="e-renta" value="${p.renta||''}"></div></div><div class="field"><label>Notas</label><textarea id="e-notas">${p.notas||''}</textarea></div><div style="margin-top:1rem"><p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.75rem">Recalificar criterios</p><div class="criteria-grid" id="edit-star-form"></div></div>`;renderEditStars();document.getElementById('modal-overlay').classList.add('open');}
-function renderEditStars(){const el=document.getElementById('edit-star-form');if(!el)return;el.innerHTML=CRITERIOS.map(c=>{const v=editScores[c.id]||3;const stars=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="editStar('${c.id}',${n})">★</span>`).join('');return`<div class="criterion-card"><div class="crit-header"><span class="crit-name">${c.emoji} ${c.nombre}</span><span class="crit-peso">${c.peso}%</span></div><div class="stars" id="edit-stars-${c.id}">${stars}</div><div class="star-label" id="edit-lbl-${c.id}">${LABELS[v]}</div></div>`;}).join('');}
-function editStar(id,v){editScores[id]=v;document.getElementById('edit-stars-'+id).innerHTML=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="editStar('${id}',${n})">★</span>`).join('');document.getElementById('edit-lbl-'+id).textContent=LABELS[v];}
-function saveEdit(){const p=props.find(x=>x.id===editId);if(!p)return;p.nombre=document.getElementById('e-nombre').value.trim()||p.nombre;p.url=document.getElementById('e-url').value.trim();p.colonia=document.getElementById('e-colonia').value;p.renta=parseInt(document.getElementById('e-renta').value)||p.renta;p.notas=document.getElementById('e-notas').value.trim();p.scores={...editScores};p.rating=calcRating(editScores);save();closeModalDirect();renderLista();}
-function closeModal(e){if(e.target===document.getElementById('modal-overlay'))closeModalDirect();}
-function closeModalDirect(){document.getElementById('modal-overlay').classList.remove('open');editId=null;}
-function renderLista(sortBy){sortBy=sortBy||'rating';const el=document.getElementById('lista-container');if(!props.length){el.innerHTML=`<div class="empty"><div class="empty-icon">🏡</div><h3>Aún no hay propiedades guardadas</h3><p>Pega el enlace de cualquier propiedad en "Nueva propiedad" y califica sus criterios.</p></div>`;return;}let sorted=[...props];if(sortBy==='rating')sorted.sort((a,b)=>b.rating-a.rating);else if(sortBy==='precio')sorted.sort((a,b)=>(a.renta||0)-(b.renta||0));else sorted.sort((a,b)=>b.id-a.id);el.innerHTML=sorted.map((p,i)=>{const v=verdictCfg(p.rating);const fc=p.rating>=80?'#1A6B5A':p.rating>=65?'#2D5A3D':p.rating>=50?'#C17D3C':'#C0392B';const over=p.renta>60000;const rentaStr=p.renta?`$${p.renta.toLocaleString('es-MX')} MXN`:'Renta no ingresada';const rankBadge=i<3&&sortBy==='rating'?`<div class="rank-badge rank-${i+1}">${['#1 — Top pick','#2 — Opción B','#3 — Opción C'][i]}</div>`:'';const urlBtn=p.url?`<a class="prop-link" href="${p.url}" target="_blank" rel="noopener">Ver anuncio →</a>`:'';const breakdown=CRITERIOS.map(c=>{const sv=p.scores[c.id]||3;return`<div class="cb-item"><div class="cb-emoji">${c.emoji}</div><div class="cb-stars">${'★'.repeat(sv)}${'☆'.repeat(5-sv)}</div><div class="cb-label">${c.nombre.split(' ')[0]}</div><div class="cb-peso">${c.peso}%</div></div>`;}).join('');return`<div class="prop-card${i===0&&sortBy==='rating'?' top':''}">${rankBadge}<div class="prop-top"><div class="prop-info"><div class="prop-nombre">${p.nombre}</div><div class="prop-meta">${p.colonia?`<span class="meta-chip">${p.colonia}</span>`:''}<span class="meta-chip${over?' over':''}">${rentaStr}${over?' ⚠️':''}</span>${p.m2?`<span class="meta-chip">${p.m2} m²</span>`:''}${p.rec?`<span class="meta-chip">${p.rec} rec.</span>`:''}<span style="color:var(--muted);font-size:11px">${p.fecha}</span></div>${urlBtn}</div><div class="score-block"><div class="score-num" style="color:${fc}">${p.rating}</div><div class="score-denom">/ 100</div><div class="verdict" style="background:${v.bg};color:${v.color}">${v.txt}</div></div></div><div class="bar-wrap"><div class="bar-fill" style="width:${p.rating}%;background:${fc}"></div></div><div class="criteria-breakdown">${breakdown}</div>${p.notas?`<div class="prop-notes">${p.notas}</div>`:''}<div class="prop-actions"><button class="btn-sm" onclick="openEdit(${p.id})">Editar</button><button class="btn-sm danger" onclick="deleteProp(${p.id})">Eliminar</button></div></div>`;}).join('');}
-function renderCriterios(){document.getElementById('criterios-display').innerHTML=CRITERIOS.map(c=>`<div class="ct-row"><div class="ct-emoji">${c.emoji}</div><div><div class="ct-name">${c.nombre}</div><div class="ct-sub">${c.sub}</div></div><div class="ct-peso">${c.peso}%</div><div><div class="ct-bar-wrap"><div class="ct-bar" style="width:${c.peso*3.33}%"></div></div></div></div>`).join('');}
+function showErr(m){const e=document.getElementById('ai-err');e.textContent=m;e.style.display='block';document.getElementById('btn-an').disabled=false;document.getElementById('loading').style.display='none';}
+function renderStars(ai){document.getElementById('star-form').innerHTML=CR.map(c=>{const v=sc[c.id]||3;const stars=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="setStar('${c.id}',${n})">★</span>`).join('');return`<div class="crit-card${ai?' ai-on':''}"><div class="crit-top"><span class="crit-name">${c.e} ${c.n}${ai?'<span class="ai-badge">IA</span>':''}</span><span class="crit-peso">${c.p}%</span></div><div class="stars" id="s-${c.id}">${stars}</div><div class="star-lbl" id="l-${c.id}">${LBL[v]}</div></div>`;}).join('');}
+function setStar(id,v){sc[id]=v;document.getElementById('s-'+id).innerHTML=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="setStar('${id}',${n})">★</span>`).join('');document.getElementById('l-'+id).textContent=LBL[v];}
+function guardar(){const n=document.getElementById('f-nombre').value.trim();if(!n){alert('Ingresa un nombre para la propiedad.');return;}const r=parseInt(document.getElementById('f-renta').value)||0;if(r>60000&&!confirm('La renta supera $60,000. ¿Guardar de todos modos?'))return;props.push({id:Date.now(),nombre:n,url:document.getElementById('f-url').value.trim(),colonia:document.getElementById('f-colonia').value,renta:r,mant:document.getElementById('f-mant').value,rec:document.getElementById('f-rec').value,ban:document.getElementById('f-ban').value,est:document.getElementById('f-est').value,anio:document.getElementById('f-anio').value,jardin:jardinVal,notas:document.getElementById('f-notas').value.trim(),scores:{...sc},rating:rating(sc),fecha:new Date().toLocaleDateString('es-MX',{day:'numeric',month:'short',year:'numeric'})});save();limpiar();switchTab('lista');}
+function limpiar(){['f-url','f-nombre','f-renta','f-rec','f-ban','f-est','f-anio','f-desc','f-notas'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});document.getElementById('f-colonia').value='';document.getElementById('f-mant').value='si';document.getElementById('url-chip').style.display='none';document.getElementById('ai-res').style.display='none';document.getElementById('ai-err').style.display='none';jardinVal='';document.getElementById('jardin-si').className='toggle-btn';document.getElementById('jardin-no').className='toggle-btn';CR.forEach(c=>sc[c.id]=3);renderStars(false);}
+function del(id){if(!confirm('¿Eliminar?'))return;props=props.filter(p=>p.id!==id);save();renderLista();}
+function openEdit(id){const p=props.find(x=>x.id===id);if(!p)return;editId=id;editSc={...p.scores};const cols=['Del Valle Sur','La Florida','Del Carmen Coyoacán','Romero de Terreros','Narvarte Poniente','Pedregal de San Francisco','Acacias','San Ángel Inn','Las Águilas','San Jerónimo Lídice','Pedregal de San Ángel','San Ángel','Otra'];document.getElementById('modal-body').innerHTML=`<div class="field"><label>Nombre</label><input id="en" value="${p.nombre}"></div><div class="field"><label>URL</label><input type="url" id="eu" value="${p.url||''}"></div><div class="grid2"><div class="field"><label>Colonia</label><select id="ec"><option value="">Seleccionar…</option>${cols.map(c=>`<option${c===p.colonia?' selected':''}>${c}</option>`).join('')}</select></div><div class="field"><label>Renta (MXN)</label><input type="number" id="er" value="${p.renta||''}"></div></div><div class="grid4"><div class="field"><label>Recámaras</label><input type="number" id="erec" value="${p.rec||''}"></div><div class="field"><label>Baños</label><input type="number" id="eban" value="${p.ban||''}"></div><div class="field"><label>Estac.</label><input type="number" id="eest" value="${p.est||''}"></div><div class="field"><label>Año</label><input type="number" id="eanio" value="${p.anio||''}"></div></div><div class="field"><label>Notas</label><textarea id="eno">${p.notas||''}</textarea></div><p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:1rem 0 .75rem">Recalificar criterios</p><div class="crit-grid" id="edit-stars"></div>`;renderEditStars();document.getElementById('overlay').classList.add('open');}
+function renderEditStars(){document.getElementById('edit-stars').innerHTML=CR.map(c=>{const v=editSc[c.id]||3;const stars=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="editStar('${c.id}',${n})">★</span>`).join('');return`<div class="crit-card"><div class="crit-top"><span class="crit-name">${c.e} ${c.n}</span><span class="crit-peso">${c.p}%</span></div><div class="stars" id="es-${c.id}">${stars}</div><div class="star-lbl" id="el-${c.id}">${LBL[v]}</div></div>`;}).join('');}
+function editStar(id,v){editSc[id]=v;document.getElementById('es-'+id).innerHTML=[1,2,3,4,5].map(n=>`<span class="star${n<=v?' on':''}" onclick="editStar('${id}',${n})">★</span>`).join('');document.getElementById('el-'+id).textContent=LBL[v];}
+function saveEdit(){const p=props.find(x=>x.id===editId);if(!p)return;p.nombre=document.getElementById('en').value.trim()||p.nombre;p.url=document.getElementById('eu').value.trim();p.colonia=document.getElementById('ec').value;p.renta=parseInt(document.getElementById('er').value)||p.renta;p.rec=document.getElementById('erec').value;p.ban=document.getElementById('eban').value;p.est=document.getElementById('eest').value;p.anio=document.getElementById('eanio').value;p.notas=document.getElementById('eno').value.trim();p.scores={...editSc};p.rating=rating(editSc);save();closeModalDirect();renderLista();}
+function closeModal(e){if(e.target===document.getElementById('overlay'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('overlay').classList.remove('open');editId=null;}
+function renderLista(by){by=by||'rating';const el=document.getElementById('lista');if(!props.length){el.innerHTML=`<div class="empty"><div class="empty-icon">🏡</div><h3>Aún no hay propiedades</h3><p>Agrega la primera desde "Nueva propiedad".</p></div>`;return;}let s=[...props];if(by==='rating')s.sort((a,b)=>b.rating-a.rating);else if(by==='precio')s.sort((a,b)=>(a.renta||0)-(b.renta||0));else s.sort((a,b)=>b.id-a.id);el.innerHTML=s.map((p,i)=>{const v=verd(p.rating);const fc=p.rating>=80?'#1A6B5A':p.rating>=65?'#2D5A3D':p.rating>=50?'#C17D3C':'#C0392B';const over=p.renta>60000;const rstr=p.renta?`$${p.renta.toLocaleString('es-MX')} MXN`:'—';const rb=i<3&&by==='rating'?`<div class="rank-tag r${i+1}">${['#1 — Top pick','#2 — Opción B','#3 — Opción C'][i]}</div>`:'';const urlbtn=p.url?`<a class="p-link" href="${p.url}" target="_blank" rel="noopener">Ver anuncio →</a>`:'';const jchip=p.jardin==='si'?`<span class="chip green">🌿 Con jardín</span>`:p.jardin==='no'?`<span class="chip red">Sin jardín</span>`:'';const bd=CR.map(c=>{const sv=p.scores[c.id]||3;return`<div class="bd"><div class="bd-emoji">${c.e}</div><div class="bd-stars">${'★'.repeat(sv)}${'☆'.repeat(5-sv)}</div><div class="bd-label">${c.n.split(' ')[0]}</div><div class="bd-peso">${c.p}%</div></div>`;}).join('');const facts=[];if(p.rec)facts.push(`<span class="chip">${p.rec} rec.</span>`);if(p.ban)facts.push(`<span class="chip">${p.ban} baños</span>`);if(p.est)facts.push(`<span class="chip">${p.est} estac.</span>`);if(p.anio)facts.push(`<span class="chip">Año ${p.anio}</span>`);return`<div class="prop-card${i===0&&by==='rating'?' top1':''}">${rb}<div class="p-top"><div class="p-info"><div class="p-nombre">${p.nombre}</div><div class="p-meta">${p.colonia?`<span class="chip">${p.colonia}</span>`:''}<span class="chip${over?' red':''}">${rstr}${p.mant==='si'?' c/mant':''}${over?' ⚠️':''}</span>${jchip}<span style="font-size:11px;color:var(--muted)">${p.fecha}</span></div>${urlbtn}</div><div class="score-box"><div class="score-n" style="color:${fc}">${p.rating}</div><div class="score-d">/ 100</div><div class="verdict" style="background:${v.bg};color:${v.c}">${v.t}</div></div></div><div class="bar-bg"><div class="bar-fill" style="width:${p.rating}%;background:${fc}"></div></div><div class="breakdown">${bd}</div>${facts.length?`<div class="p-facts">${facts.join('')}</div>`:''} ${p.notas?`<div class="p-notes">${p.notas}</div>`:''}<div class="p-actions"><button class="btn-sm" onclick="openEdit(${p.id})">Editar</button><button class="btn-sm del" onclick="del(${p.id})">Eliminar</button></div></div>`;}).join('');}
+function renderCriterios(){document.getElementById('crit-display').innerHTML=CR.map(c=>`<div class="ct-row"><div class="ct-e">${c.e}</div><div><div class="ct-n">${c.n}</div><div class="ct-s">${c.s}</div></div><div class="ct-p">${c.p}%</div><div><div class="ct-bw"><div class="ct-bf" style="width:${c.p*3.33}%"></div></div></div></div>`).join('');}
 function switchTab(id){document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['nueva','lista','criterios'][i]===id));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel-'+id).classList.add('active');if(id==='lista')renderLista();}
-document.addEventListener('DOMContentLoaded',()=>{renderStarForm(false);renderCriterios();updateCount();loadApiKey();});
+document.addEventListener('DOMContentLoaded',()=>{renderStars(false);renderCriterios();document.getElementById('cnt').textContent=props.length;loadKey();});
 </script>
 </body>
 </html>
