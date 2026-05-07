@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluador de propiedades — Casa CDMX</title>
+<style>
+  :root {
+    --bg: #0f0f0f;
+    --surface: #1a1a1a;
+    --surface2: #222;
+    --border: rgba(255,255,255,0.1);
+    --text: #f0f0f0;
+    --muted: #888;
+    --accent: #7f77dd;
+    --accent-light: rgba(127,119,221,0.15);
+    --green: #1d9e75;
+    --amber: #ef9f27;
+    --red: #e24b4a;
+    --teal: #5dcaa5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; font-size: 15px; line-height: 1.6; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .header { border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+  .header h1 { font-size: 16px; font-weight: 500; }
+  .header .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .filter-pill { font-size: 11px; background: rgba(127,119,221,0.2); color: #afa9ec; padding: 4px 12px; border-radius: 20px; }
+  .main { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+  .tab { padding: 10px 20px; font-size: 13px; cursor: pointer; background: none; border: none; color: var(--muted); border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s; }
+  .tab.active { color: var(--text); border-bottom-color: var(--accent); }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .section-label { font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 1rem; }
+  .crit-row { display: grid; grid-template-columns: 1.5rem 1fr 60px; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .crit-row:last-child { border-bottom: none; }
+  .crit-name { font-size: 14px; font-weight: 500; }
+  .crit-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .peso { font-size: 13px; font-weight: 500; color: var(--accent); text-align: right; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1rem; }
+  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; }
+  input[type=text], input[type=number], textarea, select {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    color: var(--text); font-size: 14px; padding: 9px 12px; outline: none; font-family: inherit;
+  }
+  input:focus, textarea:focus { border-color: var(--accent); }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .star-group label { margin-bottom: 8px; }
+  .stars { display: flex; gap: 6px; }
+  .star { font-size: 22px; cursor: pointer; color: var(--border); transition: color .1s; user-select: none; }
+  .star.on { color: var(--amber); }
+  .star-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 9px 18px; border-radius: 8px; font-size: 13px; cursor: pointer; font-family: inherit; border: none; }
+  .btn-primary { background: var(--accent); color: #fff; }
+  .btn-primary:hover { opacity: .9; }
+  .btn-ghost { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+  .btn-ghost:hover { color: var(--text); }
+  .btn-group { display: flex; gap: 8px; margin-top: 1.25rem; flex-wrap: wrap; }
+  .prop-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: .75rem; }
+  .prop-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .75rem; }
+  .prop-nombre { font-size: 16px; font-weight: 500; }
+  .prop-meta { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .rating-big { font-size: 32px; font-weight: 600; line-height: 1; }
+  .rating-sub { font-size: 11px; color: var(--muted); margin-top: 2px; text-align: right; }
+  .verdict-badge { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; margin-top: 5px; display: inline-block; }
+  .bar-wrap { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; margin: .75rem 0; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width .4s; }
+  .mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px; margin-top: .5rem; }
+  .mini-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px solid var(--border); }
+  .mini-row:last-child { border-bottom: none; }
+  .mini-label { color: var(--muted); }
+  .btn-delete { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 6px; padding: 4px 10px; font-size: 11px; cursor: pointer; margin-top: .75rem; }
+  .btn-delete:hover { border-color: var(--red); color: var(--red); }
+  .empty { font-size: 13px; color: var(--muted); padding: 2rem 0; }
+  .trophy { color: var(--amber); margin-right: 5px; }
+  @media (max-width: 600px) {
+    .grid2 { grid-template-columns: 1fr; }
+    .mini-grid { grid-template-columns: 1fr; }
+    .header { padding: 1rem; flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <div style="font-size:11px;color:#888;margin-bottom:3px">🏡 Casa CDMX — Buscador</div>
+    <h1>Evaluador de propiedades</h1>
+    <div class="sub">Sur-poniente CDMX · 5 criterios ponderados</div>
+  </div>
+  <span class="filter-pill">Filtro: ≤ $60,000 MXN/mes</span>
+</div>
+<div class="main">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('nueva')">Nueva propiedad</button>
+    <button class="tab" onclick="switchTab('lista')">Mis propiedades</button>
+    <button class="tab" onclick="switchTab('criterios')">Criterios</button>
+  </div>
+  <div id="panel-nueva" class="panel active">
+    <p class="section-label">Datos de la propiedad</p>
+    <div class="card">
+      <div style="margin-bottom:14px">
+        <label>Nombre o referencia</label>
+        <input type="text" id="nombre" placeholder="Ej. Casa Coyoacán, Calle Moctezuma 45">
+      </div>
+      <div class="grid2">
+        <div>
+          <label>Colonia</label>
+          <input type="text" id="colonia" placeholder="Ej. Coyoacán">
+        </div>
+        <div>
+          <label>Renta mensual (MXN, incl. mantenimiento)</label>
+          <input type="number" id="renta" placeholder="55000" max="60000">
+        </div>
+      </div>
+      <div style="margin-top:14px">
+        <label>URL del anuncio (opcional)</label>
+        <input type="text" id="url" placeholder="https://...">
+      </div>
+      <div style="margin-top:14px">
+        <label>Notas</label>
+        <textarea id="notas" rows="2" placeholder="Observaciones libres..."></textarea>
+      </div>
+    </div>
+    <p class="section-label" style="margin-top:1.5rem">Calificación por criterio</p>
+    <div class="card" id="star-form"></div>
+    <div id="renta-warning" style="display:none;color:#e24b4a;font-size:12px;margin-top:.5rem">
+      ⚠️ La renta supera el presupuesto máximo de $60,000 MXN. Esta propiedad no pasa el filtro duro.
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="guardar()">Guardar propiedad</button>
+      <button class="btn btn-ghost" onclick="limpiar()">Limpiar</button>
+    </div>
+  </div>
+  <div id="panel-lista" class="panel">
+    <p class="section-label">Propiedades evaluadas — ordenadas por rating</p>
+    <div id="lista-container"></div>
+  </div>
+  <div id="panel-criterios" class="panel">
+    <p class="section-label">Sistema de pesos acordado</p>
+    <div class="card">
+      <div id="criterios-display"></div>
+      <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-size:12px;color:var(--muted)">
+        El precio no forma parte del rating — es condición de entrada (filtro duro ≤ $60k/mes).
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+const CRITERIOS = [
+  { id: 'jardin',    nombre: 'Jardín',                 sub: 'Tamaño, estado y privacidad',              peso: 30, emoji: '🌿' },
+  { id: 'ubicacion', nombre: 'Ubicación y colonia',    sub: 'Perfil, seguridad, ambiente de la zona',   peso: 25, emoji: '📍' },
+  { id: 'tamanio',   nombre: 'Tamaño y distribución',  sub: 'm², recámaras, funcionalidad del espacio', peso: 20, emoji: '📐' },
+  { id: 'estado',    nombre: 'Estado del inmueble',    sub: 'Antigüedad, remodelaciones, instalaciones',peso: 20, emoji: '🔧' },
+  { id: 'estacion',  nombre: 'Estacionamiento',         sub: 'Cajones cubiertos y seguros',              peso:  5, emoji: '🚗' },
+];
+const LABELS = ['', 'Muy malo', 'Malo', 'Regular', 'Bueno', 'Excelente'];
+let scores = {};
+let props = JSON.parse(localStorage.getItem('casas_cdmx') || '[]');
+CRITERIOS.forEach(c => scores[c.id] = 3);
+function saveProps() { localStorage.setItem('casas_cdmx', JSON.stringify(props)); }
+function calcRating(s) {
+  return Math.round(CRITERIOS.reduce((acc, c) => acc + (s[c.id] / 5) * c.peso, 0));
+}
+function renderStarForm() {
+  document.getElementById('star-form').innerHTML = CRITERIOS.map(c => `
+    <div class="star-group" style="margin-bottom:14px">
+      <label>${c.emoji} ${c.nombre} <span style="color:var(--accent);font-weight:500">${c.peso}%</span> — <span style="font-weight:400;color:#aaa">${c.sub}</span></label>
+      <div class="stars" id="stars-${c.id}">
+        ${[1,2,3,4,5].map(n => `<span class="star${n<=scores[c.id]?' on':''}" onclick="setStar('${c.id}',${n})">★</span>`).join('')}
+      </div>
+      <div class="star-label" id="lbl-${c.id}">${LABELS[scores[c.id]]}</div>
+    </div>
+  `).join('');
+}
+function setStar(id, v) {
+  scores[id] = v;
+  document.getElementById('stars-'+id).innerHTML =
+    [1,2,3,4,5].map(n => `<span class="star${n<=v?' on':''}" onclick="setStar('${id}',${n})">★</span>`).join('');
+  document.getElementById('lbl-'+id).textContent = LABELS[v];
+}
+function verdictConfig(r) {
+  if (r >= 80) return { color: '#1d9e75', bg: 'rgba(29,158,117,.15)', txt: 'Excelente' };
+  if (r >= 65) return { color: '#5dcaa5', bg: 'rgba(93,202,165,.15)', txt: 'Buena opción' };
+  if (r >= 50) return { color: '#ef9f27', bg: 'rgba(239,159,39,.15)',  txt: 'Aceptable' };
+  return           { color: '#e24b4a', bg: 'rgba(226,75,74,.15)',   txt: 'Por debajo' };
+}
+function guardar() {
+  const nombre = document.getElementById('nombre').value.trim();
+  const renta  = parseInt(document.getElementById('renta').value) || 0;
+  if (!nombre) { alert('Por favor ingresa un nombre para la propiedad.'); return; }
+  if (renta > 60000) {
+    if (!confirm('La renta supera el filtro de $60,000 MXN. ¿Deseas guardarla de todos modos para referencia?')) return;
+  }
+  props.push({
+    id:      Date.now(),
+    nombre,
+    colonia: document.getElementById('colonia').value.trim(),
+    renta,
+    url:     document.getElementById('url').value.trim(),
+    notas:   document.getElementById('notas').value.trim(),
+    scores:  { ...scores },
+    rating:  calcRating(scores),
+    fecha:   new Date().toLocaleDateString('es-MX'),
+  });
+  saveProps();
+  limpiar();
+  renderLista();
+  switchTab('lista');
+}
+function limpiar() {
+  ['nombre','colonia','renta','url','notas'].forEach(id => document.getElementById(id).value = '');
+  CRITERIOS.forEach(c => scores[c.id] = 3);
+  renderStarForm();
+  document.getElementById('renta-warning').style.display = 'none';
+}
+function deleteProp(id) {
+  if (!confirm('¿Eliminar esta propiedad?')) return;
+  props = props.filter(p => p.id !== id);
+  saveProps();
+  renderLista();
+}
+function renderLista() {
+  const el = document.getElementById('lista-container');
+  if (!props.length) {
+    el.innerHTML = '<div class="empty">Aún no hay propiedades guardadas. Usa "Nueva propiedad" para agregar la primera.</div>';
+    return;
+  }
+  const sorted = [...props].sort((a, b) => b.rating - a.rating);
+  el.innerHTML = sorted.map((p, i) => {
+    const v = verdictConfig(p.rating);
+    const top = CRITERIOS.slice().sort((a,b) => (p.scores[b.id]*b.peso)-(p.scores[a.id]*a.peso));
+    const rentaStr = p.renta ? `$${p.renta.toLocaleString('es-MX')} MXN/mes` : 'Renta no registrada';
+    const overBudget = p.renta > 60000;
+    const originalIdx = props.indexOf(p);
+    return `<div class="prop-card">
+      <div class="prop-header">
+        <div style="flex:1;min-width:0">
+          <div class="prop-nombre">${i===0?'<span class="trophy">🏆</span>':''}${p.nombre}</div>
+          <div class="prop-meta">${p.colonia ? p.colonia+' · ':''} ${rentaStr}${overBudget?' ⚠️ sobre presupuesto':''} · ${p.fecha}</div>
+          ${p.url ? `<div style="margin-top:4px"><a href="${p.url}" target="_blank" style="font-size:12px">Ver anuncio →</a></div>` : ''}
+        </div>
+        <div style="text-align:right;margin-left:1rem;flex-shrink:0">
+          <div class="rating-big" style="color:${v.color}">${p.rating}</div>
+          <div class="rating-sub">/ 100 pts</div>
+          <span class="verdict-badge" style="background:${v.bg};color:${v.color}">${v.txt}</span>
+        </div>
+      </div>
+      <div class="bar-wrap"><div class="bar-fill" style="width:${p.rating}%;background:${v.color}"></div></div>
+      <div class="mini-grid">
+        ${top.map(c => `<div class="mini-row"><span class="mini-label">${c.emoji} ${c.nombre}</span><span style="color:${p.scores[c.id]>=4?'#1d9e75':p.scores[c.id]===3?'#888':'#e24b4a'}">${'★'.repeat(p.scores[c.id])}${'☆'.repeat(5-p.scores[c.id])}</span></div>`).join('')}
+      </div>
+      ${p.notas ? `<div style="margin-top:.75rem;font-size:12px;color:var(--muted);border-top:1px solid var(--border);padding-top:.75rem">${p.notas}</div>` : ''}
+      <button class="btn-delete" onclick="deleteProp(${p.id})">Eliminar</button>
+    </div>`;
+  }).join('');
+}
+function renderCriterios() {
+  document.getElementById('criterios-display').innerHTML = CRITERIOS.map((c,i) => `
+    <div class="crit-row">
+      <span style="font-size:12px;color:var(--muted)">${i+1}</span>
+      <div>
+        <div class="crit-name">${c.emoji} ${c.nombre}</div>
+        <div class="crit-sub">${c.sub}</div>
+      </div>
+      <div class="peso">${c.peso}%</div>
+    </div>
+  `).join('');
+}
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', ['nueva','lista','criterios'][i]===id));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  if (id==='lista') renderLista();
+}
+document.addEventListener('DOMContentLoaded', () => {
+  renderStarForm();
+  renderCriterios();
+  renderLista();
+  document.addEventListener('input', e => {
+    if (e.target.id === 'renta') {
+      document.getElementById('renta-warning').style.display =
+        parseInt(e.target.value) > 60000 ? 'block' : 'none';
+    }
+  });
+});
+</script>
+</body>
+</html>
