@@ -1,4 +1,4 @@
-# Búsqueda de casa — 29 de octubre de 2026
+# Búsqueda de casa — 30 de octubre de 2026
 
 > **Filtro duro:** Renta ≤ **$60,000 MXN/mes** con mantenimiento · Casa independiente o en condominio
 > **Colonias:** Del Valle Sur · La Florida · Del Carmen Coyoacán · Romero de Terreros · Narvarte Poniente · Pedregal de San Francisco · Acacias · San Ángel Inn · Las Águilas · San Jerónimo Lídice · Pedregal de San Ángel · San Ángel
@@ -100,4 +100,4 @@
 
 ---
 
-*Generado automáticamente · 2026-10-29 18:43 UTC*
+*Generado automáticamente · 2026-10-30 18:19 UTC*
